@@ -12,7 +12,7 @@ public class ProcessDatapackClient{
         }
         this.server = server;
     }
-    public final void process(@NonNull JSONObject datapacksLot){
+    public final void process(JSONObject datapacksLot){
         JSONArray datapacks = datapacksLot.getJSONArray("datapacksLot");
         for(int i = 0; i < datapacks.length(); i++){
             JSONObject datapack = datapacks.getJSONObject(i);

@@ -19,7 +19,7 @@ public class StringMCItem extends CustomItem{
     protected int getPrefContentWidth(int height){
         return font.stringWidth(content);
     }
-    protected getPrefContentHeight(int width){
+    protected int getPrefContentHeight(int width){
         return font.getHeight();
     }
     protected void paint(Graphics g, int w, int h){
