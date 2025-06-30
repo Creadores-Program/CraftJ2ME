@@ -8,7 +8,7 @@ public class ProcessDatapackClient{
     }
     public ProcessDatapackClient(ServerWebGamePostClient server){
         if(server == null){
-            throw RuntimeException("NullPointerException: server is null");
+            throw new RuntimeException("NullPointerException: server is null");
         }
         this.server = server;
     }

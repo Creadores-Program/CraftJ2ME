@@ -26,7 +26,7 @@ public class StringMCItem extends CustomItem{
         g.setFont(font);
         String[] coloredMC = StringUtils.split(this.content, "§");
         int x = 0;
-        if(coloredMC.length() == 1){
+        if(coloredMC.length == 1){
             g.setColor(TextFormatMC.WHITE);
             g.drawString(content, x, 0, Graphics.TOP | Graphics.LEFT);
             return;
