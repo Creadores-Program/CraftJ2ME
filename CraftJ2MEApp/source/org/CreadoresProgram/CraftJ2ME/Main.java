@@ -81,8 +81,12 @@ public class Main extends MIDlet implements CommandListener{
                 er.printStackTrace();
             }
             for(int i = 0; i < servers.length(); i++){
-                JSONObject server = servers.getJSONObject(i);
-                preservers.append(server.getString("name"), null);
+                try{
+                    JSONObject server = servers.getJSONObject(i);
+                    preservers.append(server.getString("name"), null);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }else{
             setItem("servers", "[]");
@@ -134,7 +138,13 @@ public class Main extends MIDlet implements CommandListener{
         cambiarNombre.setCommandListener(this);
         Display.getDisplay(this).setCurrent(preservers);
         if(getItem("present") == null){
-            Image img = Image.createImage("/textures/creadoresPro.png");
+            Image img;
+            try{
+                img = Image.createImage("/textures/creadoresPro.png");
+            }catch(Exception e){
+                e.printStackTrace();
+                img = null;
+            }
             Alert present = new Alert("CraftJ2ME", "Bienvenido a CraftJ2ME!\nUn Juego para Jugar Servidores MC desde tu Celular Clasico!\nPara Empezar ya viste el README de nuestro repo de Github?\nTe recomiendo verlo para saber como hacer tu servidor compatible con CraftJ2ME!\nGracias por juegar nuestro juego!\n\nNo estamos afiliados a Monjag ni a Microsoft.\nEste Juego tiene licencia GPL GNU v3.\n\nCreadores Program © 2025\n\"La Revolución del Codigo\"", img, AlertType.INFO);
             present.setTimeout(Alert.FOREVER);
             present.setCommandListener(new CommandListener(){
