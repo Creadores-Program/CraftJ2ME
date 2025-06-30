@@ -90,7 +90,7 @@ public class TextFormatMC{
         "t",
         "u",
         "v"
-    }
+    };
     private static int RGBtoHex(int r, int g, int b){
         return (r << 16) | (g << 8) | b;
     }
