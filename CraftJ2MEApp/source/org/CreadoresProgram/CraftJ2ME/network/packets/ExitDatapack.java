@@ -9,11 +9,11 @@ public class ExitDatapack extends Datapack{
         JSONObject datapack;
         try{
             datapack = new JSONObject();
+            datapack.put("ID", ID);
+            datapack.put("identifier", playerId);
         }catch(Exception er){
             return null;
         }
-        datapack.put("ID", ID);
-        datapack.put("identifier", playerId);
         return datapack;
     }
 }

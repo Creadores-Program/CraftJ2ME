@@ -215,7 +215,7 @@ public class Main extends MIDlet implements CommandListener{
     }
     public void destroyApp(boolean unconditional) {
         if(serverMC != null){
-            serverMC.sendDataPacket(new ExitDatapack(playerId));
+            serverMC.sendDataPacket(new ExitDatapack(idPlayer));
             serverMC.stop();
             serverMC = null;
             chatMC = null;

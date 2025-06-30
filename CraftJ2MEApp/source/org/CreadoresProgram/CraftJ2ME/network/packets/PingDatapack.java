@@ -9,12 +9,12 @@ public class PingDatapack extends Datapack{
         JSONObject datapack;
         try{
             datapack = new JSONObject();
+            datapack.put("ID", ID);
+            datapack.put("identifier", playerId);
+            datapack.put("ping", System.currentTimeMillis());
         }catch(Exception er){
             return null;
         }
-        datapack.put("ID", ID);
-        datapack.put("identifier", playerId);
-        datapack.put("ping", System.currentTimeMillis());
         return datapack;
     }
 }

@@ -10,7 +10,11 @@ import org.json.me.JSONObject;
 public class ServerClientCraftJ2ME{
     private ServerWebGamePostClient serverRaw;
     private IntervalPing pingLoop;
+    private String domain;
+    private int port;
     public ServerClientCraftJ2ME(String domain, int port){
+        this.domain = domain;
+        this.port = port;
         pingLoop = new IntervalPing();
         pingLoop.start();
     }
@@ -28,7 +32,7 @@ public class ServerClientCraftJ2ME{
         public void processDatapack(JSONObject datapack){
             pingLoop.lastResponse = System.currentTimeMillis();
             String id = datapack.getString("ID");
-            switch(id){
+            /*switch(id){
                 case "pong":
                     break;
                 case "chat":
@@ -51,7 +55,7 @@ public class ServerClientCraftJ2ME{
                     break;
                 case "settingsRform":
                     break;
-            }
+            }*/
         }
     }
     public class IntervalPing extends Thread{
