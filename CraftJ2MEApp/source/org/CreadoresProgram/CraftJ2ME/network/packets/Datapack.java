@@ -3,7 +3,9 @@ import org.json.me.JSONObject;
 public class Datapack{
     public static String ID = "unknown";
     public String playerId = "unknown";
-    public JSONObject toJson(){}
+    public JSONObject toJson(){
+        return null;
+    }
     public Datapack(String playerId){
         this.playerId = playerId;
     }
