@@ -31,7 +31,13 @@ public class ServerClientCraftJ2ME{
         }
         public void processDatapack(JSONObject datapack){
             pingLoop.lastResponse = System.currentTimeMillis();
-            String id = datapack.getString("ID");
+            String id;
+            try{
+                id = datapack.getString("ID");
+            }catch(Exception e){
+                e.printStackTrace();
+                return;
+            }
             /*switch(id){
                 case "pong":
                     break;
