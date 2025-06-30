@@ -98,7 +98,7 @@ public class TextFormatMC{
         char colorL = mensaje.charAt(0);
         return new String[]{
             String.valueOf(colorL),
-            mensaje.substring(1);
+            mensaje.substring(1)
         };
     }
     public static int getColorMC(String colorL){
