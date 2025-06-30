@@ -2,6 +2,9 @@ package org.CreadoresProgram.CraftJ2ME.network.packets;
 import org.json.me.JSONObject;
 public class PingDatapack extends Datapack{
     public static String ID = "ping";
+    public PingDatapack(String playerId){
+        super(playerId);
+    }
     public JSONObject toJson(){
         JSONObject datapack;
         try{

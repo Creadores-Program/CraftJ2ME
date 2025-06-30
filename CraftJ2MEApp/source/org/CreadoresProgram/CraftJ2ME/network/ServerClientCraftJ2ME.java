@@ -22,6 +22,9 @@ public class ServerClientCraftJ2ME{
         serverRaw.sendDataPacket(datapack.toJson());
     }
     public class ProcessDatapackCraftJ2ME extends ProcessDatapackClient{
+        public ProcessDatapackCraftJ2ME(ServerWebGamePostClient serv){
+            super(serv);
+        }
         public void processDatapack(JSONObject datapack){
             pingLoop.lastResponse = System.currentTimeMillis();
             String id = datapack.getString("ID");

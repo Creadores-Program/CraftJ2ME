@@ -13,10 +13,20 @@ public class ProcessDatapackClient{
         this.server = server;
     }
     public final void process(JSONObject datapacksLot){
-        JSONArray datapacks = datapacksLot.getJSONArray("datapacksLot");
+        JSONArray datapacks;
+        try{
+            datapacks = datapacksLot.getJSONArray("datapacksLot");
+        }catch(Exception e){
+            e.printStackTrace();
+            return;
+        }
         for(int i = 0; i < datapacks.length(); i++){
-            JSONObject datapack = datapacks.getJSONObject(i);
-            this.processDatapack(datapack);
+            try{
+                JSONObject datapack = datapacks.getJSONObject(i);
+                this.processDatapack(datapack);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
     public void processDatapack(JSONObject datapack){

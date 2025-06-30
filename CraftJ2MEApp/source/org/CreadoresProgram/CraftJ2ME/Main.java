@@ -60,6 +60,7 @@ public class Main extends MIDlet implements CommandListener{
     private String namePlayer;
     private JSONArray servers;
     private ServerClientCraftJ2ME serverMC;
+    private Random random = new Random();
     public static Main instance;
     public void startApp(){
         instance = this;
@@ -101,7 +102,7 @@ public class Main extends MIDlet implements CommandListener{
         pause.setCommandListener(this);
         pause.append("Config", null);
         pause.append("Lista de Jugadores", null);
-        config = new List("Config");
+        config = new List("Config", List.IMPLICIT);
         configSelec = new Command("Seleccionar", Command.OK, 1);
         configQuit = new Command("Volver", Command.BACK, 2);
         config.addCommand(configSelec);
@@ -139,7 +140,7 @@ public class Main extends MIDlet implements CommandListener{
             present.setCommandListener(new CommandListener(){
                 public void commandAction(Command c, Displayable d){
                     setItem("present", "true");
-                    Display.getDisplay(this).setCurrent(preservers);
+                    Display.getDisplay(Main.this).setCurrent(preservers);
                 }
             });
             Display.getDisplay(this).setCurrent(present);
@@ -178,7 +179,7 @@ public class Main extends MIDlet implements CommandListener{
         disconec.setTimeout(Alert.FOREVER);
         disconec.setCommandListener(new CommandListener(){
             public void commandAction(Command c, Displayable d){
-                Display.getDisplay(this).setCurrent(preservers);
+                Display.getDisplay(Main.this).setCurrent(preservers);
             }
         });
         Display.getDisplay(this).setCurrent(disconec);
@@ -204,7 +205,7 @@ public class Main extends MIDlet implements CommandListener{
         disconec.setTimeout(Alert.FOREVER);
         disconec.setCommandListener(new CommandListener(){
             public void commandAction(Command c, Displayable d){
-                Display.getDisplay(this).setCurrent(preservers);
+                Display.getDisplay(Main.this).setCurrent(preservers);
             }
         });
         Display.getDisplay(this).setCurrent(disconec);
