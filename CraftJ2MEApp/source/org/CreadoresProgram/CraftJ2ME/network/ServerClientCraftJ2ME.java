@@ -115,7 +115,11 @@ public class ServerClientCraftJ2ME{
         public void run(){
             while(running){
                 if(x == Main.instance.getVistaCanvasMC().x && y == Main.instance.getVistaCanvasMC().y && z == Main.instance.getVistaCanvasMC().z && yaw == Main.instance.getVistaCanvasMC().yaw && pitch == Main.instance.getVistaCanvasMC().pitch){
-                    Thread.sleep(1000);
+                    try{
+                        Thread.sleep(1000);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
                     continue;
                 }
                 x = Main.instance.getVistaCanvasMC().x;
@@ -130,7 +134,11 @@ public class ServerClientCraftJ2ME{
                 datapack.yaw = yaw;
                 datapack.pitch = pitch;
                 sendDataPacket(datapack);
-                Thread.sleep(1000);
+                try{
+                    Thread.sleep(1000);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     }
