@@ -10,11 +10,20 @@ import org.json.me.JSONObject;
 public class ServerClientCraftJ2ME{
     private ServerWebGamePostClient serverRaw;
     private IntervalPing pingLoop;
+    private IntervalMove moveLoop;
     private String domain;
     private int port;
     public ServerClientCraftJ2ME(String domain, int port){
         this.domain = domain;
         this.port = port;
+        serverRaw = new ServerWebGamePostClient(domain, port, false);
+        serverRaw.setProcessDatapacks(new ProcessDatapackCraftJ2ME(serverRaw));
+        LoginDatapack initPacket = new LoginDatapack(Main.instance.getIdPlayer());
+        initPacket.name = Main.instance.getPlayerName();
+        initPacket.wScreen = Main.instance.getVistaCanvasMC().getWidth();
+        initPacket.hScreen = Main.instance.getVistaCanvasMC().getHeight();
+        initPacket.skin = Main.instance.getSkin();
+        sendDataPacket(initPacket);
         pingLoop = new IntervalPing();
         pingLoop.start();
     }
@@ -46,6 +55,10 @@ public class ServerClientCraftJ2ME{
                     er.printStackTrace();
                 }
             }else if(id == "vista"){
+                if(moveLoop == null){
+                    moveLoop = new IntervalMove();
+                    moveLoop.start();
+                }
                 try{
                     Main.instance.getVistaCanvasMC().updateVistaMC(datapack.getString("vistaImg"));
                 }catch(Exception er){
@@ -54,6 +67,9 @@ public class ServerClientCraftJ2ME{
             }else if(id == "inventary"){
                 //actualizar lista de inventario
             }else if(id == "exit"){
+                if(moveLoop != null){
+                    moveLoop.running = false;
+                }
                 pingLoop.running = false;
                 try{
                     Main.instance.exitServer(datapack.getString("reason"));
@@ -72,14 +88,6 @@ public class ServerClientCraftJ2ME{
         private int timeoutMs = 5000;
         public long lastResponse = System.currentTimeMillis();
         public void run(){
-            serverRaw = new ServerWebGamePostClient(domain, port, false);
-            serverRaw.setProcessDatapacks(new ProcessDatapackCraftJ2ME(serverRaw));
-            LoginDatapack initPacket = new LoginDatapack(Main.instance.getIdPlayer());
-            initPacket.name = Main.instance.getPlayerName();
-            initPacket.wScreen = Main.instance.getVistaCanvasMC().getWidth();
-            initPacket.hScreen = Main.instance.getVistaCanvasMC().getHeight();
-            initPacket.skin = Main.instance.getSkin();
-            sendDataPacket(initPacket);
             while(running){
                 try{
                     long now = System.currentTimeMillis();
@@ -98,6 +106,35 @@ public class ServerClientCraftJ2ME{
         }
         public void stopInterval(){
             running = false;
+        }
+    }
+    public class IntervalMove extends Thread{
+        private int x = 0;
+        private int y = 0;
+        private int z = 0;
+        private int yaw = 0;
+        private int pitch = 0;
+        public boolean running = true;
+        public void run(){
+            while(running){
+                if(x == Main.instance.getVistaCanvasMC().x && y == Main.instance.getVistaCanvasMC().y && z == Main.instance.getVistaCanvasMC().z && yaw == Main.instance.getVistaCanvasMC().yaw && pitch == Main.instance.getVistaCanvasMC().pitch){
+                    Thread.sleep(1000);
+                    continue;
+                }
+                x = Main.instance.getVistaCanvasMC().x;
+                y = Main.instance.getVistaCanvasMC().y;
+                z = Main.instance.getVistaCanvasMC().z;
+                yaw = Main.instance.getVistaCanvasMC().yaw;
+                pitch = Main.instance.getVistaCanvasMC().pitch;
+                MoveDatapack datapack = new MoveDatapack(Main.instance.getIdPlayer());
+                datapack.x = x;
+                datapack.y = y;
+                datapack.z = z;
+                datapack.yaw = yaw;
+                datapack.pitch = pitch;
+                sendDataPacket(datapack);
+                Thread.sleep(1000);
+            }
         }
     }
 }
