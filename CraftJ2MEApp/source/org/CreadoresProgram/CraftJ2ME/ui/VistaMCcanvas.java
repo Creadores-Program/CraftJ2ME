@@ -3,6 +3,11 @@ import javax.microedition.lcdui.*;
 import StackOverflow.Base64;
 public class VistaMCcanvas extends Canvas{
     private Image vistaMC;
+    public int x = 0;
+    public int y = 0;
+    public int z = 0;
+    public int yaw = 0;
+    public int pitch = 0;
     protected void keyPressed(int keyCode){
         int action = getGameAction(keyCode);
         switch(action){
