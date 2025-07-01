@@ -96,6 +96,9 @@ public class ServerClientCraftJ2ME extends Thread{
                     long now = System.currentTimeMillis();
                     if(now - lastResponse > timeoutMs){
                         running = false;
+                        if(moveLoop != null){
+                            moveLoop.running = false;
+                        }
                         Main.instance.noRespondingServer();
                         return;
                     }
