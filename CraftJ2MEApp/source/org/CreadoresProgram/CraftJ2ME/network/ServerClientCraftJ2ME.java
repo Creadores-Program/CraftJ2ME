@@ -46,7 +46,11 @@ public class ServerClientCraftJ2ME{
                     er.printStackTrace();
                 }
             }else if(id == "vista"){
-                //actualiz
+                try{
+                    Main.instance.getVistaCanvasMC().updateVistaMC(datapack.getString("vistaImg"));
+                }catch(Exception er){
+                    er.printStackTrace();
+                }
             }else if(id == "inventary"){
                 //actualizar lista de inventario
             }else if(id == "exit"){
