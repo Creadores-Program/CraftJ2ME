@@ -30,7 +30,6 @@ public class ServerClientCraftJ2ME{
             super(serv);
         }
         public void processDatapack(JSONObject datapack){
-            pingLoop.lastResponse = System.currentTimeMillis();
             String id;
             try{
                 id = datapack.getString("ID");
@@ -38,30 +37,22 @@ public class ServerClientCraftJ2ME{
                 e.printStackTrace();
                 return;
             }
-            /*switch(id){
-                case "pong":
-                    break;
-                case "chat":
-                    Main.instance.sendChat(new StringMCItem(datapack.getString("message"), datapack.getString("playerName")));
-                    break;
-                case "vista":
-                    //actualizar
-                    break;
-                case "inventary":
-                    //subir
-                    break;
-                case "move":
-                    //mover
-                    break;
-                case "exit":
-                    pingLoop.running = false;
-                    Main.instance.exitServer(datapack.getString("reason"));
-                    break;
-                case "form":
-                    break;
-                case "settingsRform":
-                    break;
-            }*/
+            if(id == "pong"){
+                pingLoop.lastResponse = System.currentTimeMillis();
+            }else if(id == "chat"){
+                Main.instance.sendChat(new StringMCItem(datapack.getString("message"), datapack.getString("playerName")));
+            }else if(id == "vista"){
+                //actualiz
+            }else if(id == "inventary"){
+                //actualizar lista de inventario
+            }else if(id == "exit"){
+                pingLoop.running = false;
+                Main.instance.exitServer(datapack.getString("reason"));
+            }else if(id == "form"){
+                //establecer vista de form
+            }else if(id == "settingsRForm"){
+                //añadir a lista de config
+            }
         }
     }
     public class IntervalPing extends Thread{
@@ -71,6 +62,12 @@ public class ServerClientCraftJ2ME{
         public void run(){
             serverRaw = new ServerWebGamePostClient(domain, port, false);
             serverRaw.setProcessDatapacks(new ProcessDatapackCraftJ2ME(serverRaw));
+            LoginDatapack initPacket = new LoginDatapack(Main.instance.getIdPlayer());
+            initPacket.name = Main.instance.getPlayerName();
+            initPacket.wScreen = Main.instance.getVistaCanvasMC().getWidth();
+            initPacket.hScreen = Main.instance.getVistaCanvasMC().getHeight();
+            initPacket.skin = Main.instance.getSkin();
+            sendDataPacket(initPacket);
             while(running){
                 try{
                     long now = System.currentTimeMillis();

@@ -4,6 +4,10 @@ import javax.microedition.lcdui.*;
 import javax.microedition.rms.*;
 
 import java.util.Random;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+
+import StackOverflow.Base64;
 
 import org.json.me.JSONObject;
 import org.json.me.JSONArray;
@@ -165,6 +169,19 @@ public class Main extends MIDlet implements CommandListener{
     public String getIdPlayer(){
         return idPlayer;
     }
+    public String getPlayerName(){
+        return playerName;
+    }
+    public String getSkin(){
+        if(getItem("skinPlayer") == null){
+            return "";
+        }else{
+            return getItem("skinPlayer");
+        }
+    }
+    public VistaMCcanvas getVistaCanvasMC(){
+        return mcVista
+    }
     public ServerClientCraftJ2ME getServerMC(){
         return serverMC;
     }
@@ -275,7 +292,29 @@ public class Main extends MIDlet implements CommandListener{
             return null;
         }
     }
-    private void joinServer(){}
+    private void joinServer(String domain, int port){
+        mcVista = new VistaMCcanvas();
+        mcVistaPause = new Command("pause", Command.BACK, 1);
+        mcVistaChat = new Command("chat", Command.OK, 2);
+        mcVista.addCommand(mcVistaPause);
+        mcVista.addCommand(mcVistaChat);
+        mcVista.setCommandListener(this);
+        try{
+            InputStream is = getClass().getResourceAsStream("/textures/loading.png");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[256];
+            int bytesRead;
+            while((bytesRead = is.read(buffer)) != -1){
+                baos.write(buffer, 0, bytesRead);
+            }
+            is.close();
+            mcVista.updateVistaMC(Base64.encode(baos.toByteArray()));
+        }catch(Exception er){
+            er.printStackTrace();
+        }
+        Display.getDisplay(this).setCurrent(mcVista);
+        serverMC = new ServerClientCraftJ2ME(domain, port);
+    }
     private String generateUUID() {
         StringBuffer uuid = new StringBuffer();
         String template = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";

@@ -13,6 +13,7 @@ public class PingDatapack extends Datapack{
             datapack.put("identifier", playerId);
             datapack.put("ping", System.currentTimeMillis());
         }catch(Exception er){
+            er.printStackTrace();
             return null;
         }
         return datapack;
