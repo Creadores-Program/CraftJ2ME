@@ -104,9 +104,6 @@ public class ServerClientCraftJ2ME{
                 }
             }
         }
-        public void stopInterval(){
-            running = false;
-        }
     }
     public class IntervalMove extends Thread{
         private int x = 0;
