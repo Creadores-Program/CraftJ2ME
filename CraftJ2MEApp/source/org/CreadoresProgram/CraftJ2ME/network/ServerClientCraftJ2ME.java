@@ -7,7 +7,7 @@ import org.CreadoresProgram.CraftJ2ME.network.packets.*;
 import org.CreadoresProgram.CraftJ2ME.ui.*;
 
 import org.json.me.JSONObject;
-public class ServerClientCraftJ2ME{
+public class ServerClientCraftJ2ME extends Thread{
     private ServerWebGamePostClient serverRaw;
     private IntervalPing pingLoop;
     private IntervalMove moveLoop;
@@ -16,6 +16,8 @@ public class ServerClientCraftJ2ME{
     public ServerClientCraftJ2ME(String domain, int port){
         this.domain = domain;
         this.port = port;
+    }
+    public void run(){
         serverRaw = new ServerWebGamePostClient(domain, port, false);
         serverRaw.setProcessDatapacks(new ProcessDatapackCraftJ2ME(serverRaw));
         LoginDatapack initPacket = new LoginDatapack(Main.instance.getIdPlayer());
@@ -27,8 +29,9 @@ public class ServerClientCraftJ2ME{
         pingLoop = new IntervalPing();
         pingLoop.start();
     }
-    public void stop(){
+    public void stopServ(){
         pingLoop = null;
+        moveLoop = null;
         serverRaw = null;
     }
     public void sendDataPacket(Datapack datapack){
