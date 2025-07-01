@@ -40,14 +40,22 @@ public class ServerClientCraftJ2ME{
             if(id == "pong"){
                 pingLoop.lastResponse = System.currentTimeMillis();
             }else if(id == "chat"){
-                Main.instance.sendChat(new StringMCItem(datapack.getString("message"), datapack.getString("playerName")));
+                try{
+                    Main.instance.sendChat(new StringMCItem(datapack.getString("message"), datapack.getString("playerName")));
+                }catch(Exception er){
+                    er.printStackTrace();
+                }
             }else if(id == "vista"){
                 //actualiz
             }else if(id == "inventary"){
                 //actualizar lista de inventario
             }else if(id == "exit"){
                 pingLoop.running = false;
-                Main.instance.exitServer(datapack.getString("reason"));
+                try{
+                    Main.instance.exitServer(datapack.getString("reason"));
+                }catch(Exception er){
+                    er.printStackTrace();
+                }
             }else if(id == "form"){
                 //establecer vista de form
             }else if(id == "settingsRForm"){
