@@ -180,7 +180,7 @@ public class Main extends MIDlet implements CommandListener{
         }
     }
     public VistaMCcanvas getVistaCanvasMC(){
-        return mcVista
+        return mcVista;
     }
     public ServerClientCraftJ2ME getServerMC(){
         return serverMC;
