@@ -170,7 +170,7 @@ public class Main extends MIDlet implements CommandListener{
         return idPlayer;
     }
     public String getPlayerName(){
-        return playerName;
+        return namePlayer;
     }
     public String getSkin(){
         if(getItem("skinPlayer") == null){
