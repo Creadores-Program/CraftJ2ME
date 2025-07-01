@@ -186,7 +186,7 @@ public class Main extends MIDlet implements CommandListener{
         return serverMC;
     }
     public void noRespondingServer(){
-        serverMC.stop();
+        serverMC.stopServ();
         serverMC = null;
         chatMC = null;
         chatMCQuit = null;
@@ -212,7 +212,7 @@ public class Main extends MIDlet implements CommandListener{
         Display.getDisplay(this).setCurrent(disconec);
     }
     public void exitServer(String reason){
-        serverMC.stop();
+        serverMC.stopServ();
         serverMC = null;
         chatMC = null;
         chatMCQuit = null;
@@ -243,7 +243,7 @@ public class Main extends MIDlet implements CommandListener{
     public void destroyApp(boolean unconditional) {
         if(serverMC != null){
             serverMC.sendDataPacket(new ExitDatapack(idPlayer));
-            serverMC.stop();
+            serverMC.stopServ();
             serverMC = null;
             chatMC = null;
             chatMCQuit = null;
@@ -314,6 +314,7 @@ public class Main extends MIDlet implements CommandListener{
         }
         Display.getDisplay(this).setCurrent(mcVista);
         serverMC = new ServerClientCraftJ2ME(domain, port);
+        serverMC.start();
     }
     private String generateUUID() {
         StringBuffer uuid = new StringBuffer();
