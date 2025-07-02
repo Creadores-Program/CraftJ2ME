@@ -7,10 +7,12 @@ import org.CreadoresProgram.CraftJ2ME.network.packets.*;
 import org.CreadoresProgram.CraftJ2ME.ui.*;
 
 import org.json.me.JSONObject;
+import org.json.me.JSONArray;
 public class ServerClientCraftJ2ME extends Thread{
     private ServerWebGamePostClient serverRaw;
     private IntervalPing pingLoop;
     private IntervalMove moveLoop;
+    private IntervalChat chatLoop:
     private String domain;
     private int port;
     public ServerClientCraftJ2ME(String domain, int port){
@@ -32,6 +34,7 @@ public class ServerClientCraftJ2ME extends Thread{
     public void stopServ(){
         pingLoop = null;
         moveLoop = null;
+        chatLoop = null;
         serverRaw = null;
     }
     public void sendDataPacket(Datapack datapack){
@@ -62,6 +65,10 @@ public class ServerClientCraftJ2ME extends Thread{
                     moveLoop = new IntervalMove();
                     moveLoop.start();
                 }
+                if(chatLoop == null){
+                    chatLoop = new IntervalChat();
+                    chatLoop.start();
+                }
                 try{
                     Main.instance.getVistaCanvasMC().updateVistaMC(datapack.getString("vistaImg"));
                 }catch(Exception er){
@@ -72,6 +79,9 @@ public class ServerClientCraftJ2ME extends Thread{
             }else if(id == "exit"){
                 if(moveLoop != null){
                     moveLoop.running = false;
+                }
+                if(chatLoop != null){
+                    chatLoop.running = false;
                 }
                 pingLoop.running = false;
                 try{
@@ -98,6 +108,9 @@ public class ServerClientCraftJ2ME extends Thread{
                         running = false;
                         if(moveLoop != null){
                             moveLoop.running = false;
+                        }
+                        if(chatLoop != null){
+                            chatLoop.running = false;
                         }
                         Main.instance.noRespondingServer();
                         return;
@@ -144,6 +157,41 @@ public class ServerClientCraftJ2ME extends Thread{
                     Thread.sleep(1000);
                 }catch(Exception e){
                     e.printStackTrace();
+                }
+            }
+        }
+    }
+    public class IntervalChat extends Thread{
+        public JSONArray chat;
+        private boolean running = true;
+        public void run(){
+            try{
+                chat = new JSONArray();
+            }catch(Exception er){
+                er.printStackTrace();
+            }
+            while(running){
+                if(chat.length() == 0){
+                    try{
+                        Thread.sleep(1000);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                    continue;
+                }
+                for(int i = 0; i < chat.length(); i++){
+                    ChatDatapack datapack = new ChatDatapack(Main.instance.getIdPlayer());
+                    try{
+                        datapack.message = chat.getString(i);
+                        sendDataPacket(datapack);
+                    }catch(Exception er){
+                        er.printStackTrace();
+                    }
+                }
+                try{
+                    Thread.sleep(1000);
+                }catch(Exception er){
+                    er.printStackTrace();
                 }
             }
         }
