@@ -20,6 +20,7 @@ import java.io.*;
 
 import org.CreadoresProgram.CraftJ2ME.config.Config;
 import org.CreadoresProgram.CraftJ2ME.player.Player;
+import org.CreadoresProgram.CraftJ2ME.network.server.ServerCraftJ2ME;
 import org.CreadoresProgram.CraftJ2ME.utils.TextFormat;
 import org.CreadoresProgram.CraftJ2ME.utils.Logger;
 import org.CreadoresProgram.CraftJ2ME.utils.NbtBlockDefinitionRegistry;
@@ -30,6 +31,7 @@ public class Server{
     private final Map<String, Player> players = new ConcurrentHashMap<>();
     @Getter
     private final BedrockCodec bedrockPacketCodec = Bedrock_v662.CODEC;
+    //server CraftJ2ME admin
     @Getter
     private final Path dataPath;
     @Getter
@@ -40,6 +42,8 @@ public class Server{
     private NbtBlockDefinitionRegistry blockDefinitions;
     @Getter
     private Logger logger;
+    @Getter
+    private ServerCraftJ2ME server;
     public Server(String dataPath){
         instance = this;
         this.logger = new Logger(TextFormat.GOLD.getAnsiCode()+"CraftJ2ME Proxy");
