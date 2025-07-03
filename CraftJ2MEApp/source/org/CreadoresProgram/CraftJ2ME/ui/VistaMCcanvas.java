@@ -13,7 +13,7 @@ public class VistaMCcanvas extends Canvas{
     private int yaw = 0;
     private int pitch = 0;
     protected void keyPressed(int keyCode){
-        if(Main.getServerMC() == null){
+        if(Main.instance.getServerMC() == null){
             return;
         }
         int action = getGameAction(keyCode);
@@ -66,7 +66,7 @@ public class VistaMCcanvas extends Canvas{
         }
     }
     protected void keyReleased(int keyCode){
-        if(Main.getServerMC() == null){
+        if(Main.instance.getServerMC() == null){
             return;
         }
         int action = getGameAction(keyCode);
@@ -126,6 +126,6 @@ public class VistaMCcanvas extends Canvas{
         datapack.z = z;
         datapack.yaw = yaw;
         datapack.pitch = pitch;
-        Main.getServerMC().queueLoop.datapacks.addElement(datapack);
+        Main.instance.getServerMC().queueLoop.datapacks.addElement(datapack);
     }
 }
