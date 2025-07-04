@@ -240,6 +240,18 @@ public class Main extends MIDlet implements CommandListener{
     public void sendChat(StringMCItem str){
         chatMC.append(str);
     }
+    public void setInventary(){
+        if(inventary == null){
+            inventary = new List("Inventario", List.IMPLICIT);
+            inventaryCancel = new Command("Volver", Command.BACK, 1);
+            inventarySelec = new Command("Seleccionar", Command.OK, 2);
+            inventary.setCommandListener(this);
+        }
+        inventary.append("Mostrar más", null);
+        inventary.addCommand(inventaryCancel);
+        inventary.addCommand(inventarySelec);
+        Display.getDisplay(this).setCurrent(inventary);
+    }
     public void destroyApp(boolean unconditional) {
         if(serverMC != null){
             serverMC.sendDataPacket(new ExitDatapack(idPlayer));

@@ -5,6 +5,7 @@ import StackOverflow.Base64;
 
 import org.CreadoresProgram.CraftJ2ME.Main;
 import org.CreadoresProgram.CraftJ2ME.network.packets.MoveDatapack;
+import org.CreadoresProgram.CraftJ2ME.network.packets.InventaryRequest;
 public class VistaMCcanvas extends Canvas{
     private Image vistaMC;
     private int x = 0;
@@ -13,7 +14,7 @@ public class VistaMCcanvas extends Canvas{
     private int yaw = 0;
     private int pitch = 0;
     protected void keyPressed(int keyCode){
-        if(Main.instance.getServerMC() == null){
+        if(Main.instance.getServerMC() == null || Main.instance.getServerMC().queueLoop == null){
             return;
         }
         int action = getGameAction(keyCode);
@@ -62,11 +63,16 @@ public class VistaMCcanvas extends Canvas{
                         y = 1;
                         updateMoveData();
                         break;
+                    case KEY_NUM0://inventario datapack
+                        InventaryRequest datapack = new InventaryRequest(Main.instance.getIdPlayer());
+                        datapack.pageRequest = 0;
+                        Main.instance.getServerMC().queueLoop.datapacks.addElement(datapack);
+                        break;
                 }
         }
     }
     protected void keyReleased(int keyCode){
-        if(Main.instance.getServerMC() == null){
+        if(Main.instance.getServerMC() == null || Main.instance.getServerMC().queueLoop == null){
             return;
         }
         int action = getGameAction(keyCode);
@@ -100,6 +106,9 @@ public class VistaMCcanvas extends Canvas{
                     case KEY_NUM5:
                         y = 0;
                         updateMoveData();
+                        break;
+                    case KEY_NUM0:
+                        Main.instance.setInventary();
                         break;
                 }
         }
