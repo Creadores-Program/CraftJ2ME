@@ -31,7 +31,6 @@ public class Server{
     private final Map<String, Player> players = new ConcurrentHashMap<>();
     @Getter
     private final BedrockCodec bedrockPacketCodec = Bedrock_v662.CODEC;
-    //server CraftJ2ME admin
     @Getter
     private final Path dataPath;
     @Getter

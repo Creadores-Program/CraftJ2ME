@@ -25,8 +25,15 @@ public class ServerCraftJ2ME extends Thread{
     }
     public class ProcessDatapackCraftJ2ME extends ProcessDatapackServer{
         public void processDatapack(JSONObject datapack){
-            String id = datapack.getString("ID");
-            switch(id){}
+            Player player = Server.getInstance().getPlayers().get(datapack.getString("identifier"));
+            if(player == null && datapack.getString("ID") == "login"){
+                new Player(datapack.getString("identifier"), datapack);
+                return;
+            }
+            if(player == null){
+                return;
+            }
+            player.getPacketTranslatorManager().translate(datapack);
         }
     }
 }
