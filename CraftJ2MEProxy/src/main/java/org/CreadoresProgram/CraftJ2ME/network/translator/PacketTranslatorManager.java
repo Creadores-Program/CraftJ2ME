@@ -55,7 +55,15 @@ public class PacketTranslatorManager{
     }
     private void registerDefaultPackets(){
         //CraftJ2ME
+        craftj2meTranslators.put("exit", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.ExitPacket());
+        craftj2meTranslators.put("ping", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.PingPacket());
+        craftj2meTranslators.put("chat", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.ChatPacket());
         //Bedrock
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ResourcePackStackPacket.class, new ResourcePackStackPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ResourcePacksInfoPacket.class, new ResourcePacksInfoPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ServerToClientHandshakePacket.class, new ServerToClientHandshakePacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.NetworkSettingsPacket.class, new NetworkSettingsPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.PlayStatusPacket.class, new PlayStatusPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.DisconnectPacket.class, new DisconnectPacket());
     }
 }

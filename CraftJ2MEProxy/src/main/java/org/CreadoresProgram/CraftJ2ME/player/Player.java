@@ -304,6 +304,7 @@ public class Player{
                         player.setSneaking(false);
                         y = player.getVector3f().getY() + velocity.getY();
                     }else{
+                        velocity = new Vector3f(0.216, 0.216, 0.216);
                         player.setSneaking(false);
                         y = player.getVector3f().getY();
                     }
