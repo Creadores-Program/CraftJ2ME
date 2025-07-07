@@ -50,6 +50,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.Base64;
 import java.util.Random;
+
+import org.jsoup.Jsoup;
 public class Player{
     @Getter
     private final PacketTranslatorManager packetTranslatorManager;
@@ -102,6 +104,9 @@ public class Player{
     @Getter
     @Setter
     private int hotbarSlot = 0;
+    @Getter
+    @Setter
+    private String traslateAd = "false";
     public Player(String identifier, JSONObject loginDatapack){
         this.packetTranslatorManager = new PacketTranslatorManager(this);
         this.identifier = identifier;
@@ -198,7 +203,19 @@ public class Player{
         skinData.put("ServerAddress", Server.getInstance().getConfig().getBedrockAddress() + ":" + Server.getInstance().getConfig().getBedrockPort());
         skinData.put("SkinAnimationData", "");
         skinData.put("SkinColor", "#0");
-        //skinData.put("SkinData", Server.getInstance().getDefaultSkinData());
+        if(loginDatapackCraftJ2ME.getString("skin") != ""){
+            try{
+                byte[] response = Jsoup.connect(loginDatapackCraftJ2ME.getString("skin"))
+                    .userAgent("Mozilla/5.0 (J2ME; U; MIDP-2.0; CLDC-1.1; CraftJ2MEProxy) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36")
+                    .ignoreContentType(true).execute().bodyAsBytes();
+                String skinDataB = Base64.getEncoder().encodeToString(response);
+                skinData.put("SkinData", skinDataB);
+            }catch(Exception er){
+                skinData.put("SkinData", Server.getInstance().getDefaultSkinData());
+            }
+        }else{
+            skinData.put("SkinData", Server.getInstance().getDefaultSkinData());
+        }
         skinData.put("SkinGeometryData", Base64.getEncoder().encodeToString(Server.getInstance().getDefaultSkinGeometry().getBytes()));
         skinData.put("SkinId", this.identifier + ".Custom");
         skinData.put("SkinImageHeight", 64);
