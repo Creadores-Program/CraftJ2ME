@@ -8,12 +8,14 @@ import com.alibaba.fastjson2.JSONObject;
 public class ServerCraftJ2ME extends Thread{
     private ServerWebGamePostServer serverRaw;
     private int port;
-    public ServerCraftJ2ME(int port){
+    private String imgPath;
+    public ServerCraftJ2ME(int port, String imgPath){
         this.port = port;
+        this.imgPath = imgPath;
     }
     public void run(){
         ProcessDatapackCraftJ2ME processDatapacks = new ProcessDatapackCraftJ2ME();
-        serverRaw = new ServerWebGamePostServer(port, null, processDatapacks);
+        serverRaw = new ServerWebGamePostServer(port, imgPath, processDatapacks);
         processDatapacks.server = serverRaw;
     }
     public void stopServ(){

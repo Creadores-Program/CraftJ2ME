@@ -43,6 +43,8 @@ public class Server{
     private Logger logger;
     @Getter
     private ServerCraftJ2ME server;
+    @Getter
+    private Config config;
     public Server(String dataPath){
         instance = this;
         this.logger = new Logger(TextFormat.GOLD.getAnsiCode()+"CraftJ2ME Proxy");
@@ -54,7 +56,7 @@ public class Server{
         }
         loadRegistryCodec();
         loadBlockDefinitions();
-        //loadDefaultSkin();
+        loadDefaultSkin();
         startServer();
     }
     private boolean initConfig(){
@@ -99,5 +101,18 @@ public class Server{
             throw new RuntimeException("Failed to load block definitions", e);
         }
     }
-    public void startServer(){}
+    private void loadDefaultSkin(){
+        try {
+            defaultSkinData = FileManager.getFileContents(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("skin/skin_data.txt")));
+            defaultSkinGeometry = FileManager.getFileContents(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("skin/skin_geometry.json")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void startServer(){
+        server = new ServerCraftJ2ME(((int) config.getPort()), config.getImgPath());
+        server.start();
+        logger.info(TextFormat.GREEN.getAnsiCode()+"CraftJ2ME Proxy"+TextFormat.RESET.getAnsiCode()+" is running on [0.0.0.0::" + this.config.getPort() + "]");
+        logger.info("Done!");
+    }
 }

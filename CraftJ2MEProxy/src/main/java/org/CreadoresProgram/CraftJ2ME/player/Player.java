@@ -176,7 +176,7 @@ public class Player{
         jwtHeader.put("x5u", publicKeyBase64);
         JSONObject skinData = new JSONObject();
         skinData.put("AnimatedImageData", new JSONArray());
-        skinData.put("ArmSize", "");
+        skinData.put("ArmSize", "wide");
         skinData.put("CapeData", "");
         skinData.put("CapeId", "");
         skinData.put("PlayFabId", java.util.UUID.randomUUID().toString());
@@ -217,6 +217,7 @@ public class Player{
             skinData.put("SkinData", Server.getInstance().getDefaultSkinData());
         }
         skinData.put("SkinGeometryData", Base64.getEncoder().encodeToString(Server.getInstance().getDefaultSkinGeometry().getBytes()));
+        skinData.put("SkinGeometryName", "{\"geometry\" : {\"default\" : \"geometry.humanoid.custom\"}}");
         skinData.put("SkinId", this.identifier + ".Custom");
         skinData.put("SkinImageHeight", 64);
         skinData.put("SkinImageWidth", 64);

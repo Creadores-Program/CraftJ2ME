@@ -1,4 +1,8 @@
+#port server
 port: 25565
+#path to img server
+# is String
+imgPath: null
 # max players in proxy
 maxplayers: 10
 # Message when the proxy is closed

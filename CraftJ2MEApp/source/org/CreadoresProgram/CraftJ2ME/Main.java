@@ -2,6 +2,8 @@ package org.CreadoresProgram.CraftJ2ME;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.lcdui.*;
 import javax.microedition.rms.*;
+import javax.microedition.io.Connector;
+import javax.microedition.io.HttpConnection;
 
 import java.util.Random;
 import java.io.InputStream;
@@ -16,6 +18,7 @@ import org.CreadoresProgram.CraftJ2ME.ui.*;
 import org.CreadoresProgram.CraftJ2ME.network.packets.ExitDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.ServerClientCraftJ2ME;
 public class Main extends MIDlet implements CommandListener{
+    private static final int LIMIT_MAX_BYTES_IMG = 100 * 1024;
     private List preservers;
     private Command preServerSelectServ;
     private Command preServerAddServ;
@@ -84,14 +87,19 @@ public class Main extends MIDlet implements CommandListener{
             }catch(Exception er){
                 er.printStackTrace();
             }
-            for(int i = 0; i < servers.length(); i++){
-                try{
-                    JSONObject server = servers.getJSONObject(i);
-                    preservers.append(server.getString("name"), null);
-                }catch(Exception e){
-                    e.printStackTrace();
+            new Thread(){
+                public void run(){
+                    for(int i = 0; i < servers.length(); i++){
+                        try{
+                            JSONObject server = servers.getJSONObject(i);
+                            Image imgServ = getImageServer(server.getString("ip"), server.getInt("port"));
+                            preservers.append(server.getString("name"), imgServ);
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            }
+            }.start();
         }else{
             setItem("servers", "[]");
             try{
@@ -342,5 +350,48 @@ public class Main extends MIDlet implements CommandListener{
             }
         }
         return uuid.toString();
+    }
+    private Image getImageServer(String domain, int port){
+        HttpConnection conexion = null;
+        InputStream is = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        Image imagen = null;
+        try{
+            conexion = (HttpConnection) Connector.open("http://"+domain+":"+port+"/favicon.ico");
+            int codigoResp = conexion.getResponseCode();
+            if(codigoResp != HttpConnection.HTTP_OK){
+                throw new Exception("Error en la solicitud del Icono");
+            }
+            long longi = conexion.getLength();
+            if(longi != -1 && longi > LIMIT_MAX_BYTES_IMG){
+                throw new Exception("El icono supera el limite permitido!");
+            }
+            is = conexion.openInputStream();
+            int ch;
+            while ((ch = is.read()) != -1){
+                baos.write(ch);
+            }
+            byte[] dataImg = baos.toByteArray();
+            if(dataImg.length > 0){
+                imagen = Image.createImage(dataImg, 0, dataImg.length);
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                if(is != null){
+                    is.close();
+                }
+                if(baos != null){
+                    baos.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(Exception er){
+                er.printStackTrace();
+            }
+        }
+        return imagen;
     }
 }

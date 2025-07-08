@@ -30,6 +30,7 @@ public class UpdateSkinPacket implements CraftJ2MEPacketTranslator{
             skinData = ImageData.of(Base64.getDecoder().decode(Server.getInstance().getDefaultSkinData()));
         }
         SerializedSkin skin = SerializedSkin.of(player.getIdentifier()+".Custom", java.util.UUID.randomUUID().toString(), skinData, null, "{\"geometry\" : {\"default\" : \"geometry.humanoid.custom\"}}", Base64.getEncoder().encodeToString(Server.getInstance().getDefaultSkinGeometry().getBytes()), false);
-        player.getBedrockClientSession().sendPacket(new ServerSettingsRequestPacket());
+        subpk.setSkin(skin);
+        player.getBedrockClientSession().sendPacket(subpk);
     }
 }

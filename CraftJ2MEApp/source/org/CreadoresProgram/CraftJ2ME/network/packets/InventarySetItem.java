@@ -3,7 +3,7 @@ import org.json.me.JSONObject;
 public class InventarySetItem extends Datapack{
     public static String ID = "inventarysetitem";
     public int indexItem;
-    public InventaryRequest(String playerId){
+    public InventarySetItem(String playerId){
         super(playerId);
     }
     public JSONObject toJson(){

@@ -4,6 +4,8 @@ public class Config{
     @Getter
     public Integer port;
     @Getter
+    public String imgPath;
+    @Getter
     public Integer maxPlayers;
     @Getter
     public String shutdownMessage;
