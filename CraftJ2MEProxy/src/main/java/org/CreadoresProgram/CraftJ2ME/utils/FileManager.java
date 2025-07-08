@@ -39,7 +39,7 @@ public class FileManager {
         byteArrayOutputStream.close();
         inputStream.close();
 
-        return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
+        return byteArrayOutputStream.toString(StandardCharsets.UTF_8.name());
     }
 
     public static String decompressGZIP(InputStream inputStream) throws IOException {
@@ -55,7 +55,7 @@ public class FileManager {
         byteArrayOutputStream.close();
         inputStream.close();
         gZIPInputStream.close();
-        return byteArrayOutputStream.toString(StandardCharsets.UTF_8);
+        return byteArrayOutputStream.toString(StandardCharsets.UTF_8.name());
     }
 
     public static JSONObject getJsonObjectFromResource(String resourceName) {

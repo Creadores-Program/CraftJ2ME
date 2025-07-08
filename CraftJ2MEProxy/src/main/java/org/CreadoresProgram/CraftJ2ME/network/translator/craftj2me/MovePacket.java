@@ -16,8 +16,8 @@ public class MovePacket implements CraftJ2MEPacketTranslator{
         if(player.getMoveLoop() == null){
             return;
         }
-        Vector2f velocityFace = new Vector2f(pk.getIntValue("pitch"), pk.getIntValue("yaw"));
-        Vector3f velocity = new Vector3f(pk.getIntValue("x"), pk.getIntValue("y"), pk.getIntValue("z"));
+        Vector2f velocityFace = Vector2f.from(pk.getIntValue("pitch"), pk.getIntValue("yaw"));
+        Vector3f velocity = Vector3f.from(pk.getIntValue("x"), pk.getIntValue("y"), pk.getIntValue("z"));
         player.getMoveLoop().setVelocityCraftJ2ME(velocity);
         player.getMoveLoop().setVelocityFaceCraftJ2ME(velocityFace);
     }

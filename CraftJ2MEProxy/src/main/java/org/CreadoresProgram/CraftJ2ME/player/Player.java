@@ -286,14 +286,14 @@ public class Player{
     static class MoveLoop extends Thread{
         @Setter
         @Getter
-        public Vector3f velocityCraftJ2ME = new Vector3f(0, 0, 0);
+        public Vector3f velocityCraftJ2ME = Vector3f.from(0, 0, 0);
         @Setter
         @Getter
-        private Vector2f velocityFaceCraftJ2ME = new Vector2f(0, 0);
+        private Vector2f velocityFaceCraftJ2ME = Vector2f.from(0, 0);
         @Setter
         @Getter
-        private Vector3f velocity = new Vector3f(0.216, 0.216, 0.216);
-        private static final Vector2f velocityFace = new Vector2f(7.5, 7.5);
+        private Vector3f velocity = Vector3f.from(0.216, 0.216, 0.216);
+        private static final Vector2f velocityFace = Vector2f.from(7.5, 7.5);
         @Setter
         private boolean running = true;
         private Player player;
@@ -318,14 +318,14 @@ public class Player{
                     double x;
                     double z;
                     if(velocityCraftJ2ME.getY() == -1){
-                        velocity = new Vector3f(0.065, 0.065, 0.065);
+                        velocity = Vector3f.from(0.065, 0.065, 0.065);
                         player.setSneaking(true);
                     }else if(velocityCraftJ2ME.getY() == 1){
-                        velocity = new Vector3f(0.216, 0.216, 0.216);
+                        velocity = Vector3f.from(0.216, 0.216, 0.216);
                         player.setSneaking(false);
                         y = player.getVector3f().getY() + velocity.getY();
                     }else{
-                        velocity = new Vector3f(0.216, 0.216, 0.216);
+                        velocity = Vector3f.from(0.216, 0.216, 0.216);
                         player.setSneaking(false);
                         y = player.getVector3f().getY();
                     }
@@ -343,7 +343,7 @@ public class Player{
                     }else{
                         z = player.getVector3f().getZ();
                     }
-                    player.setVector3f(new Vector3f(x, y, z));
+                    player.setVector3f(Vector3f.from(x, y, z));
                 }
                 pk.setPosition(player.getVector3f());
                 if(velocityFaceCraftJ2ME.getX() != 0 || velocityFaceCraftJ2ME.getY() != 0){
@@ -363,7 +363,7 @@ public class Player{
                     }else{
                         y = player.getRotation().getY();
                     }
-                    player.setRotation(new Vector2f(x, y));
+                    player.setRotation(Vector2f.from(x, y));
                 }
                 pk.setRotation(Vector3f.from(player.getRotation().getX(), player.getRotation().getY(), player.getRotation().getY()));
                 pk.setMode(MovePlayerPacket.Mode.NORMAL);
