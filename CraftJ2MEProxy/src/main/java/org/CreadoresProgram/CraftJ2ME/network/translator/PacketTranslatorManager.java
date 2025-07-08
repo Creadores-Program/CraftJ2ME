@@ -35,13 +35,13 @@ public class PacketTranslatorManager{
         this.registerDefaultPackets();
     }
     public void translate(BedrockPacket packet){
-        BedrockPacketTranslator translator = bedrockTranslators.get(pk.getClass());
+        BedrockPacketTranslator translator = bedrockTranslators.get(packet.getClass());
 
         if (translator != null) {
             if (translator.immediate()) {
-                translator.translate(pk, player);
+                translator.translate(packet, player);
             } else {
-                threadPoolExecutor.execute(() -> translator.translate(pk, player));
+                threadPoolExecutor.execute(() -> translator.translate(packet, player));
             }
         }
     }
@@ -49,9 +49,9 @@ public class PacketTranslatorManager{
         CraftJ2MEPacketTranslator translator = craftj2meTranslators.get(packet.getString("ID"));
         if(translator != null){
             if(translator.immediate()){
-                translator.translate(pk, player);
+                translator.translate(packet, player);
             }else{
-                threadPoolExecutor.execute(() -> translator.translate(pk, player));
+                threadPoolExecutor.execute(() -> translator.translate(packet, player));
             }
         }
     }

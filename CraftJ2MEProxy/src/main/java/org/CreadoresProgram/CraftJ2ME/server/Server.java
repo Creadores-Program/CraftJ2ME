@@ -13,6 +13,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
+import java.util.Objects;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -24,6 +25,7 @@ import org.CreadoresProgram.CraftJ2ME.player.Player;
 import org.CreadoresProgram.CraftJ2ME.network.server.ServerCraftJ2ME;
 import org.CreadoresProgram.CraftJ2ME.utils.TextFormat;
 import org.CreadoresProgram.CraftJ2ME.utils.Logger;
+import org.CreadoresProgram.CraftJ2ME.utils.FileManager;
 import org.CreadoresProgram.CraftJ2ME.utils.NbtBlockDefinitionRegistry;
 public class Server{
     @Getter
@@ -55,7 +57,6 @@ public class Server{
             this.getLogger().emergency("Config file not found! Terminating...");
             System.exit(1);
         }
-        loadRegistryCodec();
         loadBlockDefinitions();
         loadDefaultSkin();
         startServer();
@@ -79,14 +80,6 @@ public class Server{
             return false;
         }
         return true;
-    }
-    private void loadRegistryCodec() {
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("registry-codec.nbt");
-             DataInputStream dataInputStream = new DataInputStream(new GZIPInputStream(Objects.requireNonNull(inputStream)))) {
-            registryCodec = (CompoundTag) NBTIO.readTag((InputStream) dataInputStream);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load registry codec", e);
-        }
     }
     private void loadBlockDefinitions() {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("block_palette.nbt")) {

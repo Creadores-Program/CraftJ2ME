@@ -9,6 +9,8 @@ import org.cloudburstmc.protocol.bedrock.packet.CommandRequestPacket;
 import org.cloudburstmc.protocol.bedrock.data.command.CommandOriginType;
 import org.cloudburstmc.protocol.bedrock.data.command.CommandOriginData;
 import org.cloudburstmc.protocol.bedrock.packet.TextPacket;
+
+import java.util.UUID;
 public class ChatPacket implements CraftJ2MEPacketTranslator{
     @Override
     public void translate(JSONObject pk, Player player){

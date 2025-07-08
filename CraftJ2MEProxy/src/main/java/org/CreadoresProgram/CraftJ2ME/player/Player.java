@@ -2,6 +2,7 @@ package org.CreadoresProgram.CraftJ2ME.player;
 import org.CreadoresProgram.CraftJ2ME.network.translator.PacketTranslatorManager;
 import org.CreadoresProgram.CraftJ2ME.network.BedrockBatchHandler;
 import org.CreadoresProgram.CraftJ2ME.server.Server;
+import org.CreadoresProgram.CraftJ2ME.utils.Utils;
 import org.CreadoresProgram.CraftJ2ME.config.Config;
 import org.CreadoresProgram.CraftJ2ME.network.server.packets.ExitDatapack;
 
@@ -25,6 +26,7 @@ import org.cloudburstmc.protocol.bedrock.netty.initializer.BedrockClientInitiali
 import org.cloudburstmc.protocol.bedrock.packet.RequestNetworkSettingsPacket;
 import org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket;
 import org.cloudburstmc.protocol.bedrock.packet.StartGamePacket;
+import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket;
 import org.cloudburstmc.protocol.bedrock.data.AuthoritativeMovementMode;
 import org.cloudburstmc.protocol.bedrock.data.InputInteractionModel;
 import org.cloudburstmc.protocol.bedrock.data.InputMode;
@@ -47,6 +49,7 @@ import java.security.SignatureException;
 import java.net.InetSocketAddress;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.Base64;
 import java.util.Random;
@@ -136,7 +139,7 @@ public class Player{
                 .awaitUninterruptibly().channel();
                 Server.getInstance().getPlayers().put(this.identifier, this);
         }catch(Exception ex){
-            ExitDatapack datap = new ExitDatapack(this.identifier);
+            ExitDatapack datap = new ExitDatapack();
             datap.reason = "Failed to connect: " + ex;
             Server.getInstance().getServer().sendDataPacket(this.identifier, datap);
         }
@@ -257,7 +260,7 @@ public class Player{
             this.channel.disconnect();
             this.channel.parent().disconnect();
         }
-        ExitDatapack datap = new ExitDatapack(this.identifier);
+        ExitDatapack datap = new ExitDatapack();
         datap.reason = reason;
         Server.getInstance().getServer().sendDataPacket(this.identifier, datap);
         Server.getInstance().getPlayers().remove(this.identifier);
@@ -280,7 +283,7 @@ public class Player{
 
         return header + "." + payload + "." + signatureString;
     }
-    class MoveLoop extends Thread{
+    static class MoveLoop extends Thread{
         @Setter
         @Getter
         public Vector3f velocityCraftJ2ME = new Vector3f(0, 0, 0);
@@ -374,7 +377,7 @@ public class Player{
             }
         }
     }
-    class PlayerAuthInputThread implements Runnable {
+    static class PlayerAuthInputThread implements Runnable {
         public Player player;
         public long tick;
         public void run(){

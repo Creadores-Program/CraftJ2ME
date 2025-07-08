@@ -38,7 +38,7 @@ public class PlayStatusPacket implements BedrockPacketTranslator {
             Vector2f rotation = player.getLastServerRotation();
             player.setVector3f(pos);
             player.setRotation(rotation);
-            startMoveLoop();
+            player.startMoveLoop();
             //generar Vista Render
         }
     }
