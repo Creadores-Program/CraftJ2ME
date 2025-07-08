@@ -9,6 +9,8 @@ import org.CreadoresProgram.CraftJ2ME.network.translator.interfaces.CraftJ2MEPac
 import org.CreadoresProgram.CraftJ2ME.network.translator.bedrock.*;
 import org.CreadoresProgram.CraftJ2ME.player.Player;
 
+import org.cloudburstmc.protocol.bedrock.packet.BedrockPacket;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.SynchronousQueue;

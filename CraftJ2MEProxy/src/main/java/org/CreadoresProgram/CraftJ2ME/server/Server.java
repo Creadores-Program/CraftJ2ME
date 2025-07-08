@@ -10,6 +10,7 @@ import org.cloudburstmc.nbt.NbtUtils;
 
 import org.yaml.snakeyaml.Yaml;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
 import java.nio.file.Path;
