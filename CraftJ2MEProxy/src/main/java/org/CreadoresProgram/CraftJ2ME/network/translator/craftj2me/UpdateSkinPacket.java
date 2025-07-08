@@ -10,13 +10,14 @@ import org.cloudburstmc.protocol.bedrock.data.skin.SerializedSkin;
 import org.cloudburstmc.protocol.bedrock.data.skin.ImageData;
 
 import java.util.Base64;
+import java.util.UUID;
 
 import org.jsoup.Jsoup;
 public class UpdateSkinPacket implements CraftJ2MEPacketTranslator{
     @Override
     public void translate(JSONObject pk, Player player){
         PlayerSkinPacket subpk = new PlayerSkinPacket();
-        subpk.setUuid(player.getIdentifier());
+        subpk.setUuid(UUID.fromString(player.getIdentifier()));
         subpk.setTrustedSkin(true);
         subpk.setNewSkinName(player.getIdentifier()+".Custom");
         subpk.setOldSkinName(player.getIdentifier()+".Custom");
@@ -29,7 +30,7 @@ public class UpdateSkinPacket implements CraftJ2MEPacketTranslator{
         }catch(Exception er){
             skinData = ImageData.of(Base64.getDecoder().decode(Server.getInstance().getDefaultSkinData()));
         }
-        SerializedSkin skin = SerializedSkin.of(player.getIdentifier()+".Custom", java.util.UUID.randomUUID().toString(), skinData, null, "{\"geometry\" : {\"default\" : \"geometry.humanoid.custom\"}}", Base64.getEncoder().encodeToString(Server.getInstance().getDefaultSkinGeometry().getBytes()), false);
+        SerializedSkin skin = SerializedSkin.of(player.getIdentifier()+".Custom", UUID.randomUUID().toString(), skinData, null, "{\"geometry\" : {\"default\" : \"geometry.humanoid.custom\"}}", Base64.getEncoder().encodeToString(Server.getInstance().getDefaultSkinGeometry().getBytes()), false);
         subpk.setSkin(skin);
         player.getBedrockClientSession().sendPacket(subpk);
     }

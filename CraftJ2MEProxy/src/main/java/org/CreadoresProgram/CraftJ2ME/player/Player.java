@@ -74,7 +74,7 @@ public class Player{
     private MoveLoop moveLoop;
     @Setter
     @Getter
-    private Vector3f vector3f = Vector3f.from(0, 0, 0);
+    private Vector3f vector3f;
     @Getter
     @Setter
     private Vector2f rotation;
@@ -314,9 +314,9 @@ public class Player{
                 pk.setRuntimeEntityId(player.getRuntimeEntityId());
                 if(velocityCraftJ2ME.getX() != 0 || velocityCraftJ2ME.getY() != 0 || velocityCraftJ2ME.getZ() != 0){
                     player.setOldPosition(player.getVector3f());
-                    double y;
-                    double x;
-                    double z;
+                    double y = 0;
+                    double x = 0;
+                    double z = 0;
                     if(velocityCraftJ2ME.getY() == -1){
                         velocity = Vector3f.from(0.065, 0.065, 0.065);
                         player.setSneaking(true);
@@ -347,8 +347,8 @@ public class Player{
                 }
                 pk.setPosition(player.getVector3f());
                 if(velocityFaceCraftJ2ME.getX() != 0 || velocityFaceCraftJ2ME.getY() != 0){
-                    double x;
-                    double y;
+                    double x = 0;
+                    double y = 0;
                     if(velocityFaceCraftJ2ME.getX() == 1){
                         x = player.getRotation().getX() + velocityFace.getX();
                     }else if(velocityCraftJ2ME.getX() == -1){
