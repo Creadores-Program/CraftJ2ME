@@ -74,7 +74,7 @@ public class Player{
     private MoveLoop moveLoop;
     @Setter
     @Getter
-    private Vector3f vector3f;
+    private Vector3f vector3f = Vector3f.from(0, 0, 0);
     @Getter
     @Setter
     private Vector2f rotation;
@@ -283,7 +283,7 @@ public class Player{
 
         return header + "." + payload + "." + signatureString;
     }
-    static class MoveLoop extends Thread{
+    public static class MoveLoop extends Thread{
         @Setter
         @Getter
         public Vector3f velocityCraftJ2ME = Vector3f.from(0, 0, 0);
