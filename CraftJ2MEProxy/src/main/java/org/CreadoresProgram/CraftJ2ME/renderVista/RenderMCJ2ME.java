@@ -1,6 +1,5 @@
 package org.CreadoresProgram.CraftJ2ME.renderVista;
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.ScreenshotOptions;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
