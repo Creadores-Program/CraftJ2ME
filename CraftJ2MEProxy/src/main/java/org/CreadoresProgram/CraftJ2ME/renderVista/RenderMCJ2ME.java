@@ -1,5 +1,4 @@
 package org.CreadoresProgram.CraftJ2ME.renderVista;
-import com.microsoft.playwright.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -14,8 +13,8 @@ import org.CreadoresProgram.CraftJ2ME.Proxy;
 
 import org.cloudburstmc.math.vector.Vector2f;
 import org.cloudburstmc.math.vector.Vector3f;
-public class RenderMCJ2ME implements AutoCloseable{
-    private static final Browser browser;
+public class RenderMCJ2ME{
+    /*private static final Browser browser;
     private static final Playwright playwright;
     private final Page page;
     private final BrowserContext context;
@@ -72,4 +71,5 @@ public class RenderMCJ2ME implements AutoCloseable{
             context.close();
         }
     }
+    */
 }
