@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Base64;
 
+import javafx.stage.Stage;
+
 import org.CreadoresProgram.CraftJ2ME.player.Player;
 import org.CreadoresProgram.CraftJ2ME.Proxy;
 
