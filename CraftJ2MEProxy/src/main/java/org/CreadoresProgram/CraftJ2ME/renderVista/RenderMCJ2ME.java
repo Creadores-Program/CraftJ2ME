@@ -33,8 +33,8 @@ import org.CreadoresProgram.CraftJ2ME.Proxy;
 import org.cloudburstmc.math.vector.Vector2f;
 import org.cloudburstmc.math.vector.Vector3f;
 public class RenderMCJ2ME{
-    private final WebView webView = null;
-    private final WebEngine webEngine = null;
+    private WebView webView = null;
+    private WebEngine webEngine = null;
     private final Player player;
 
     static {
@@ -88,7 +88,9 @@ public class RenderMCJ2ME{
         });
         return future;
     }
-    public class JSComunique{}
+    public class JSComunique{
+        public void doneThree(){}
+    }
     /*private static final Browser browser;
     private static final Playwright playwright;
     private final Page page;
