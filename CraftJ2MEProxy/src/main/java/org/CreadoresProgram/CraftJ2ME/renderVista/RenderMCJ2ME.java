@@ -33,8 +33,8 @@ import org.CreadoresProgram.CraftJ2ME.Proxy;
 import org.cloudburstmc.math.vector.Vector2f;
 import org.cloudburstmc.math.vector.Vector3f;
 public class RenderMCJ2ME{
-    private final WebView webView;
-    private final WebEngine webEngine;
+    private final WebView webView = null;
+    private final WebEngine webEngine = null;
     private final Player player;
 
     static {
