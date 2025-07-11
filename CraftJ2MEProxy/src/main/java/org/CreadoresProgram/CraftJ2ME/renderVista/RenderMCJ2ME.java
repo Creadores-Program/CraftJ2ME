@@ -76,8 +76,12 @@ public class RenderMCJ2ME{
                 String dataUrl = "data:text/javascript;charset=utf-8,"+ encodedCode;
                 String script = String.format("import('%s')", dataUrl);
                 JSObject promise = (JSObject) webEngine.executeScript(script);
-                promise.call("then", (Object result)-> future.complete(result));
-                promise.call("catch", (Object error)-> future.completeExceptionally(new RuntimeException(error)));
+                java.util.function.Consumer<Object> thenJS = (Object result)-> future.complete(result);
+                java.util.function.Consumer<Object> catchJS = (Object errorJS)-> {
+                    future.completeExceptionally(new RuntimeException(String.valueOf(errorJS)));
+                };
+                promise.call("then", thenJS);
+                promise.call("catch", catchJS);
             }catch(Exception ex){
                 future.completeExceptionally(ex);
             }
