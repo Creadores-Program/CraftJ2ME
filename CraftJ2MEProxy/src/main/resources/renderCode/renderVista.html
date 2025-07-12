@@ -22,7 +22,28 @@
     <div id="container"></div>
     <script type="module">
         import * as THREE from 'https://esm.run/three';
+        import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three/examples/jsm/loaders/GLTFLoader.js/+esm";
         window.THREE = THREE;
+        window.GLTFLoader = GLTFLoader;
+        const textureLoader = new THREE.TextureLoader();
+        function loadTexture(path) {
+            const texture = textureLoader.load(path);
+            texture.colorSpace = THREE.SRGBColorSpace;
+            texture.magFilter = THREE.NearestFilter;
+            texture.minFilter = THREE.NearestFilter;
+            return texture;
+        }
+        //carga de bloques
+        let texturesB = {};
+        window.rendererMC = new THREE.WebGLRenderer();
+        window.rendererMC.setPixelRatio(window.devicePixelRatio);
+        window.rendererMC.setSize(window.innerWidth, window.innerHeight);
+        window.rendererMC.setClearColor(0x80a0e0);
+        window.rendererMC.shadowMap.enabled = true;
+        window.rendererMC.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.getElementById("container").appendChild(window.rendererMC.domElement);
+        window.sceneTR = new THREE.Scene();
+        window.sceneTR.fog = new THREE.Fog(0x80a0e0, 50, 75);
         JavaComunique.doneThree();
     </script>
 </body>
