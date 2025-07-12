@@ -61,9 +61,24 @@ public class RenderMCJ2ME{
         });
         initFuture.join();
     }
-    public static void offRender(){
+    public void offRender(){
         fpsRender.setRunning(false);
         Platform.exit();
+    }
+    public void onRender(){
+        if(fpsRender != null){
+            fpsRender.start();
+        }else{
+            new Thread(){
+                @Override
+                public void run(){
+                    while(fpsRender == null){
+                        //null
+                    }
+                    fpsRender.start();
+                }
+            }.start();
+        }
     }
     private CompletableFuture<Void> setJsCallback(String name, Object callbackObject) {
         CompletableFuture<Void> future = new CompletableFuture<>();
@@ -112,7 +127,6 @@ public class RenderMCJ2ME{
     public class JSComunique{
         public void doneThree(){
             fpsRender = new FPSRender();
-            fpsRender.start();
         }
     }
     public class FPSRender extends Thread{
@@ -132,7 +146,7 @@ public class RenderMCJ2ME{
                             VistaDatapack pk = new VistaDatapack();
                             pk.vistaImg = Base64.getEncoder().encodeToString(baos.toByteArray());
                             Server.getInstance().getServer().sendDataPacket(player.getIdentifier(), pk);
-                            future.complete();
+                            future.complete(null);
                         }catch(Exception ex){
                             future.completeExceptionally(ex);
                         }
