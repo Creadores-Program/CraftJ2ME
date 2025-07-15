@@ -70,5 +70,6 @@ public class PacketTranslatorManager{
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.PlayStatusPacket.class, new PlayStatusPacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.DisconnectPacket.class, new DisconnectPacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.TextPacket.class, new TextPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.LevelChunkPacket.class, new LevelChunkPacket());
     }
 }

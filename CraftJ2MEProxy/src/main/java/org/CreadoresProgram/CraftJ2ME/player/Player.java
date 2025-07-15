@@ -5,6 +5,7 @@ import org.CreadoresProgram.CraftJ2ME.server.Server;
 import org.CreadoresProgram.CraftJ2ME.utils.Utils;
 import org.CreadoresProgram.CraftJ2ME.config.Config;
 import org.CreadoresProgram.CraftJ2ME.network.server.packets.ExitDatapack;
+import org.CreadoresProgram.CraftJ2ME.renderVista.RenderMCJ2ME;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -110,6 +111,9 @@ public class Player{
     @Getter
     @Setter
     private String traslateAd = "false";
+    @Getter
+    @Setter
+    private RenderMCJ2ME renderMCJ2ME;
     public Player(String identifier, JSONObject loginDatapack){
         this.packetTranslatorManager = new PacketTranslatorManager(this);
         this.identifier = identifier;

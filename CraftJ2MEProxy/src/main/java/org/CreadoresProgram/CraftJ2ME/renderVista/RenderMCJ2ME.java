@@ -113,9 +113,22 @@ public class RenderMCJ2ME{
         });
         return future;
     }
+    public void setBlock(final int x, final int y, final int z, final int id){
+        if(fpsRender == null){
+            new Thread(){
+                public void run(){
+                    while(fpsRender == null){
+
+                    }
+                    setBlock(x, y, z, id);
+                }
+            }.start();
+        }else{
+            execJS("window.setBlock("+x+", "+y+", "+z+", '"+id+"');");
+        }
+    }
     /*
     public void moveEntity(Vector3f pos, Vector2f rota, long entityId){}
-    //public void setWorld(Data){}
     //public void setAnimation(){}
     //public void updateSkinEntity(Data){}
     //public void updateBlock(){}
@@ -127,6 +140,9 @@ public class RenderMCJ2ME{
     public class JSComunique{
         public void doneThree(){
             fpsRender = new FPSRender();
+        }
+        public String getTexture(String path){
+            return BlocksTexture.getTextures().get(path);
         }
     }
     public class FPSRender extends Thread{
