@@ -46,14 +46,14 @@ public class LevelChunkPacket implements BedrockPacketTranslator{
                 continue;
             }
             if (chunkVersion == 1) {
-                networkDecodeVersionOne(byteBuf);
+                networkDecodeVersionOne(byteBuf, player);
                 continue;
             }
             if (chunkVersion == 9) {
-                networkDecodeVersionNine(byteBuf, sectionIndex);
+                networkDecodeVersionNine(byteBuf, sectionIndex, player);
                 continue;
             }
-            networkDecodeVersionEight(byteBuf, sectionIndex, byteBuf.readByte());
+            networkDecodeVersionEight(byteBuf, sectionIndex, byteBuf.readByte(), player);
         }
         byteBuf.release();
         chunkByteBuf.release();
@@ -62,15 +62,15 @@ public class LevelChunkPacket implements BedrockPacketTranslator{
     public boolean immediate() {
         return true;
     }
-    public void networkDecodeVersionNine(ByteBuf byteBuf, int sectionIndex) {
+    public void networkDecodeVersionNine(ByteBuf byteBuf, int sectionIndex, Player player) {
         byte storageSize = byteBuf.readByte();
         byteBuf.readByte(); // height
-        networkDecodeVersionEight(byteBuf, sectionIndex, storageSize);
+        networkDecodeVersionEight(byteBuf, sectionIndex, storageSize, player);
     }
-    public void networkDecodeVersionOne(ByteBuf byteBuf) {
-        networkDecodeVersionEight(byteBuf, 0, (byte) 1);
+    public void networkDecodeVersionOne(ByteBuf byteBuf, Player player) {
+        networkDecodeVersionEight(byteBuf, 0, (byte) 1, player);
     }
-    public void networkDecodeVersionEight(ByteBuf byteBuf, int sectionIndex, byte storageSize) {
+    public void networkDecodeVersionEight(ByteBuf byteBuf, int sectionIndex, byte storageSize, Player player) {
         for (int storageReadIndex = 0; storageReadIndex < storageSize; storageReadIndex++) {
             if (storageReadIndex > 1) {
                 return;
