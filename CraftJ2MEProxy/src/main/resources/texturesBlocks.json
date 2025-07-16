@@ -61,35 +61,35 @@
   },
   "9112": {
     "bedrock_name": "minecraft:birch_planks",
-    "java_default_state": 17
+    "texture": "planks_birch.png"
   },
   "11827": {
     "bedrock_name": "minecraft:jungle_planks",
-    "java_default_state": 18
+    "texture": "planks_jungle.png"
   },
   "7303": {
     "bedrock_name": "minecraft:acacia_planks",
-    "java_default_state": 19
+    "texture": "planks_acacia.png"
   },
   "13475": {
     "bedrock_name": "minecraft:cherry_planks",
-    "java_default_state": 20
+    "texture": "cherry_planks.png"
   },
   "5933": {
     "bedrock_name": "minecraft:dark_oak_planks",
-    "java_default_state": 21
+    "texture": "planks_dark_oak.png"
   },
   "2432": {
     "bedrock_name": "minecraft:mangrove_planks",
-    "java_default_state": 22
+    "texture": "mangrove_planks.png"
   },
   "9443": {
     "bedrock_name": "minecraft:bamboo_planks",
-    "java_default_state": 23
+    "texture": "bamboo_planks.png"
   },
   "14084": {
     "bedrock_name": "minecraft:bamboo_mosaic",
-    "java_default_state": 24
+    "texture": "bamboo_mosaic.png"
   },
   "2171": {
     "bedrock_name": "minecraft:sapling",
@@ -133,11 +133,11 @@
   },
   "12947": {
     "bedrock_name": "minecraft:cherry_sapling",
-    "java_default_state": 35
+    "texture": "cherry_sapling.png"
   },
   "12948": {
     "bedrock_name": "minecraft:cherry_sapling",
-    "java_default_state": 36
+    "texture": "cherry_sapling.png"
   },
   "2176": {
     "bedrock_name": "minecraft:sapling",
@@ -149,27 +149,27 @@
   },
   "12200": {
     "bedrock_name": "minecraft:mangrove_propagule",
-    "java_default_state": 39
+    "texture": "mangrove_propagule.png"
   },
   "12201": {
     "bedrock_name": "minecraft:mangrove_propagule",
-    "java_default_state": 39
+    "texture": "mangrove_propagule.png"
   },
   "12202": {
     "bedrock_name": "minecraft:mangrove_propagule",
-    "java_default_state": 39
+    "texture": "mangrove_propagule.png"
   },
   "12205": {
     "bedrock_name": "minecraft:mangrove_propagule",
-    "java_default_state": 39
+    "texture": "mangrove_propagule.png"
   },
   "12206": {
     "bedrock_name": "minecraft:mangrove_propagule",
-    "java_default_state": 39
+    "texture": "mangrove_propagule.png"
   },
   "12207": {
     "bedrock_name": "minecraft:mangrove_propagule",
-    "java_default_state": 39
+    "texture": "mangrove_propagule.png"
   },
   "12203": {
     "bedrock_name": "minecraft:mangrove_propagule",
@@ -193,443 +193,443 @@
   },
   "12243": {
     "bedrock_name": "minecraft:bedrock",
-    "java_default_state": 79
+    "texture": "bedrock.png"
   },
   "12244": {
     "bedrock_name": "minecraft:bedrock",
-    "java_default_state": 79
+    "texture": "bedrock.png"
   },
   "9330": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9331": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9332": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9333": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9334": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9335": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9336": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9337": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9338": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9339": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9340": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9341": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9342": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9343": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9344": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "9345": {
     "bedrock_name": "minecraft:water",
-    "java_default_state": 80
+    "texture": "water_still.png"
   },
   "8106": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 81
+    "texture": "water_flow.png"
   },
   "8105": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 81
+    "texture": "water_flow.png"
   },
   "8107": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 82
+    "texture": "water_flow.png"
   },
   "8108": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 83
+    "texture": "water_flow.png"
   },
   "8109": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 84
+    "texture": "water_flow.png"
   },
   "8110": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 85
+    "texture": "water_flow.png"
   },
   "8111": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 86
+    "texture": "water_flow.png"
   },
   "8112": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 87
+    "texture": "water_flow.png"
   },
   "8113": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 88
+    "texture": "water_flow.png"
   },
   "8114": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 89
+    "texture": "water_flow.png"
   },
   "8115": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 90
+    "texture": "water_flow.png"
   },
   "8116": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 91
+    "texture": "water_flow.png"
   },
   "8117": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 92
+    "texture": "water_flow.png"
   },
   "8118": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 93
+    "texture": "water_flow.png"
   },
   "8119": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 94
+    "texture": "water_flow.png"
   },
   "8120": {
     "bedrock_name": "minecraft:flowing_water",
-    "java_default_state": 95
+    "texture": "water_flow.png"
   },
   "6209": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6210": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6211": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6212": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6213": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6214": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6215": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6216": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6217": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6218": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6219": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6220": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6221": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6222": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6223": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "6224": {
     "bedrock_name": "minecraft:lava",
-    "java_default_state": 96
+    "texture": "lava_still.png"
   },
   "12895": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 97
+    "texture": "lava_flow.png"
   },
   "12894": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 97
+    "texture": "lava_flow.png"
   },
   "12896": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 98
+    "texture": "lava_flow.png"
   },
   "12897": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 99
+    "texture": "lava_flow.png"
   },
   "12898": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 100
+    "texture": "lava_flow.png"
   },
   "12899": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 101
+    "texture": "lava_flow.png"
   },
   "12900": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 102
+    "texture": "lava_flow.png"
   },
   "12901": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 103
+    "texture": "lava_flow.png"
   },
   "12902": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 104
+    "texture": "lava_flow.png"
   },
   "12903": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 105
+    "texture": "lava_flow.png"
   },
   "12904": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 106
+    "texture": "lava_flow.png"
   },
   "12905": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 107
+    "texture": "lava_flow.png"
   },
   "12906": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 108
+    "texture": "lava_flow.png"
   },
   "12907": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 109
+    "texture": "lava_flow.png"
   },
   "12908": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 110
+    "texture": "lava_flow.png"
   },
   "12909": {
     "bedrock_name": "minecraft:flowing_lava",
-    "java_default_state": 111
+    "texture": "lava_flow.png"
   },
   "6998": {
     "bedrock_name": "minecraft:sand",
-    "java_default_state": 112
+    "texture": "sand.png"
   },
   "2621": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 113
+    "texture": "suspicious_sand_0.png"
   },
   "2622": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 113
+    "texture": "suspicious_sand_0.png"
   },
   "2624": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 113
+    "texture": "suspicious_sand_0.png"
   },
   "2626": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 113
+    "texture": "suspicious_sand_0.png"
   },
   "2628": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 113
+    "texture": "suspicious_sand_0.png"
   },
   "2623": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 114
+    "texture": "suspicious_sand_0.png"
   },
   "2625": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 115
+    "texture": "suspicious_sand_0.png"
   },
   "2627": {
     "bedrock_name": "minecraft:suspicious_sand",
-    "java_default_state": 116
+    "texture": "suspicious_sand_0.png"
   },
   "6999": {
     "bedrock_name": "minecraft:sand",
-    "java_default_state": 117
+    "texture": "sand.png"
   },
   "14115": {
     "bedrock_name": "minecraft:gravel",
-    "java_default_state": 118
+    "texture": "suspicious_gravel_1.png"
   },
   "8081": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 119
+    "texture": "suspicious_gravel_1.png"
   },
   "8082": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 119
+    "texture": "suspicious_gravel_1.png"
   },
   "8084": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 119
+    "texture": "suspicious_gravel_1.png"
   },
   "8086": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 119
+    "texture": "suspicious_gravel_1.png"
   },
   "8088": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 119
+    "texture": "suspicious_gravel_1.png"
   },
   "8083": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 120
+    "texture": "suspicious_gravel_1.png"
   },
   "8085": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 121
+    "texture": "suspicious_gravel_1.png"
   },
   "8087": {
     "bedrock_name": "minecraft:suspicious_gravel",
-    "java_default_state": 122
+    "texture": "suspicious_gravel_1.png"
   },
   "2395": {
     "bedrock_name": "minecraft:gold_ore",
-    "java_default_state": 123
+    "texture": "gold_ore.png"
   },
   "11256": {
     "bedrock_name": "minecraft:deepslate_gold_ore",
-    "java_default_state": 124
+    "texture": "deepslate_gold_ore.png"
   },
   "8006": {
     "bedrock_name": "minecraft:iron_ore",
-    "java_default_state": 125
+     "texture": "iron_ore.png"
   },
   "12973": {
     "bedrock_name": "minecraft:deepslate_iron_ore",
-    "java_default_state": 126
+    "texture": "deepslate_iron_ore.png"
   },
   "7093": {
     "bedrock_name": "minecraft:coal_ore",
-    "java_default_state": 127
+    "texture": "coal_ore.png"
   },
   "12859": {
     "bedrock_name": "minecraft:deepslate_coal_ore",
-    "java_default_state": 128
+    "texture": "deepslate_coal_ore.png"
   },
   "32": {
     "bedrock_name": "minecraft:nether_gold_ore",
-    "java_default_state": 129
+    "texture": "nether_gold_ore.png"
   },
   "738": {
     "bedrock_name": "minecraft:oak_log",
-    "java_default_state": 130
+    "texture": "log_oak.png"
   },
   "737": {
     "bedrock_name": "minecraft:oak_log",
-    "java_default_state": 131
+    "texture": "log_oak.png"
   },
   "739": {
     "bedrock_name": "minecraft:oak_log",
-    "java_default_state": 132
+    "texture": "log_oak.png"
   },
   "7074": {
     "bedrock_name": "minecraft:spruce_log",
-    "java_default_state": 133
+    "texture": "log_spruce.png"
   },
   "7073": {
     "bedrock_name": "minecraft:spruce_log",
-    "java_default_state": 134
+    "texture": "log_spruce.png"
   },
   "7075": {
     "bedrock_name": "minecraft:spruce_log",
-    "java_default_state": 135
+    "texture": "log_spruce.png"
   },
   "1793": {
     "bedrock_name": "minecraft:birch_log",
-    "java_default_state": 136
+    "texture": "log_birch.png"
   },
   "1792": {
     "bedrock_name": "minecraft:birch_log",
-    "java_default_state": 137
+    "texture": "log_birch.png"
   },
   "1794": {
     "bedrock_name": "minecraft:birch_log",
-    "java_default_state": 138
+    "texture": "log_birch.png"
   },
   "643": {
     "bedrock_name": "minecraft:jungle_log",
-    "java_default_state": 139
+    "texture": "log_jungle.png"
   },
   "642": {
     "bedrock_name": "minecraft:jungle_log",
-    "java_default_state": 140
+    "texture": "log_jungle.png"
   },
   "644": {
     "bedrock_name": "minecraft:jungle_log",
-    "java_default_state": 141
+    "texture": "log_jungle.png"
   },
   "7181": {
     "bedrock_name": "minecraft:acacia_log",
-    "java_default_state": 142
+    "texture": "log_acacia.png"
   },
   "7180": {
     "bedrock_name": "minecraft:acacia_log",
-    "java_default_state": 143
+    "texture": "log_acacia.png"
   },
   "7182": {
     "bedrock_name": "minecraft:acacia_log",
-    "java_default_state": 144
+    "texture": "log_acacia.png"
   },
   "12950": {
     "bedrock_name": "minecraft:cherry_log",
-    "java_default_state": 145
+    "texture": "cherry_side.png"
   },
   "12949": {
     "bedrock_name": "minecraft:cherry_log",
-    "java_default_state": 146
+    "texture": "cherry_side.png"
   },
   "12951": {
     "bedrock_name": "minecraft:cherry_log",
-    "java_default_state": 147
+    "texture": "cherry_side.png"
   },
   "4938": {
     "bedrock_name": "minecraft:dark_oak_log",
@@ -662,135 +662,135 @@
   },
   "1097": {
     "bedrock_name": "minecraft:muddy_mangrove_roots",
-    "java_default_state": 156
+    "texture": "muddy_mangrove_roots_top.png"
   },
   "1096": {
     "bedrock_name": "minecraft:muddy_mangrove_roots",
-    "java_default_state": 157
+    "texture": "muddy_mangrove_roots_top.png"
   },
   "1098": {
     "bedrock_name": "minecraft:muddy_mangrove_roots",
-    "java_default_state": 158
+    "texture": "muddy_mangrove_roots_top.png"
   },
   "67": {
     "bedrock_name": "minecraft:bamboo_block",
-    "java_default_state": 159
+    "texture": "bamboo_block.png"
   },
   "66": {
     "bedrock_name": "minecraft:bamboo_block",
-    "java_default_state": 160
+    "texture": "bamboo_block.png"
   },
   "68": {
     "bedrock_name": "minecraft:bamboo_block",
-    "java_default_state": 161
+    "texture": "bamboo_block.png"
   },
   "11435": {
     "bedrock_name": "minecraft:stripped_spruce_log",
-    "java_default_state": 162
+    "texture": "stripped_spruce_log.png"
   },
   "11434": {
     "bedrock_name": "minecraft:stripped_spruce_log",
-    "java_default_state": 163
+    "texture": "stripped_spruce_log.png"
   },
   "11436": {
     "bedrock_name": "minecraft:stripped_spruce_log",
-    "java_default_state": 164
+    "texture": "stripped_spruce_log.png"
   },
   "10710": {
     "bedrock_name": "minecraft:stripped_birch_log",
-    "java_default_state": 165
+    "texture": "stripped_birch_log.png"
   },
   "10709": {
     "bedrock_name": "minecraft:stripped_birch_log",
-    "java_default_state": 166
+     "texture": "stripped_birch_log.png"
   },
   "10711": {
     "bedrock_name": "minecraft:stripped_birch_log",
-    "java_default_state": 167
+     "texture": "stripped_birch_log.png"
   },
   "1779": {
     "bedrock_name": "minecraft:stripped_jungle_log",
-    "java_default_state": 168
+     "texture": "stripped_jungle_log.png"
   },
   "1778": {
     "bedrock_name": "minecraft:stripped_jungle_log",
-    "java_default_state": 169
+    "texture": "stripped_jungle_log.png"
   },
   "1780": {
     "bedrock_name": "minecraft:stripped_jungle_log",
-    "java_default_state": 170
+    "texture": "stripped_jungle_log.png"
   },
   "10099": {
     "bedrock_name": "minecraft:stripped_acacia_log",
-    "java_default_state": 171
+    "texture": "stripped_acacia_log.png"
   },
   "10098": {
     "bedrock_name": "minecraft:stripped_acacia_log",
-    "java_default_state": 172
+    "texture": "stripped_acacia_log.png"
   },
   "10100": {
     "bedrock_name": "minecraft:stripped_acacia_log",
-    "java_default_state": 173
+    "texture": "stripped_acacia_log.png"
   },
   "7289": {
     "bedrock_name": "minecraft:stripped_cherry_log",
-    "java_default_state": 174
+    "texture": "stripped_cherry_log_side.png"
   },
   "7288": {
     "bedrock_name": "minecraft:stripped_cherry_log",
-    "java_default_state": 175
+    "texture": "stripped_cherry_log_side.png"
   },
   "7290": {
     "bedrock_name": "minecraft:stripped_cherry_log",
-    "java_default_state": 176
+    "texture": "stripped_cherry_log_side.png"
   },
   "639": {
     "bedrock_name": "minecraft:stripped_dark_oak_log",
-    "java_default_state": 177
+    "texture": "stripped_dark_oak_log.png"
   },
   "638": {
     "bedrock_name": "minecraft:stripped_dark_oak_log",
-    "java_default_state": 178
+    "texture": "stripped_dark_oak_log.png"
   },
   "640": {
     "bedrock_name": "minecraft:stripped_dark_oak_log",
-    "java_default_state": 179
+    "texture": "stripped_dark_oak_log.png"
   },
   "13247": {
     "bedrock_name": "minecraft:stripped_oak_log",
-    "java_default_state": 180
+    "texture": "stripped_oak_log.png"
   },
   "13246": {
     "bedrock_name": "minecraft:stripped_oak_log",
-    "java_default_state": 181
+    "texture": "stripped_oak_log.png"
   },
   "13248": {
     "bedrock_name": "minecraft:stripped_oak_log",
-    "java_default_state": 182
+    "texture": "stripped_oak_log.png"
   },
   "14113": {
     "bedrock_name": "minecraft:stripped_mangrove_log",
-    "java_default_state": 183
+    "texture": "stripped_mangrove_log_side.png"
   },
   "14112": {
     "bedrock_name": "minecraft:stripped_mangrove_log",
-    "java_default_state": 184
+    "texture": "stripped_mangrove_log_side.png"
   },
   "14114": {
     "bedrock_name": "minecraft:stripped_mangrove_log",
-    "java_default_state": 185
+    "texture": "stripped_mangrove_log_side.png"
   },
   "5977": {
     "bedrock_name": "minecraft:stripped_bamboo_block",
-    "java_default_state": 186
+    "texture": "stripped_bamboo_block.png"
   },
   "5976": {
     "bedrock_name": "minecraft:stripped_bamboo_block",
-    "java_default_state": 187
+    "texture": "stripped_bamboo_block.png"
   },
   "5978": {
     "bedrock_name": "minecraft:stripped_bamboo_block",
-    "java_default_state": 188
+    "texture": "stripped_bamboo_block.png"
   },
   "8620": {
     "bedrock_name": "minecraft:oak_wood",
@@ -1194,15 +1194,15 @@
   },
   "1381": {
     "bedrock_name": "minecraft:sponge",
-    "java_default_state": 518
+    "texture": "sponge.png"
   },
   "11331": {
     "bedrock_name": "minecraft:glass",
-    "java_default_state": 519
+    "texture": "glass.png"
   },
   "13411": {
     "bedrock_name": "minecraft:lapis_ore",
-    "java_default_state": 520
+    "texture": "lapis_ore.png"
   },
   "12945": {
     "bedrock_name": "minecraft:deepslate_lapis_ore",
@@ -1210,7 +1210,7 @@
   },
   "7092": {
     "bedrock_name": "minecraft:lapis_block",
-    "java_default_state": 522
+    "texture": "lapis_block.png"
   },
   "13826": {
     "bedrock_name": "minecraft:dispenser",
@@ -1274,7 +1274,7 @@
   },
   "1102": {
     "bedrock_name": "minecraft:noteblock",
-    "java_default_state": 538
+    "texture": "noteblock.png"
   },
   "11907": {
     "bedrock_name": "minecraft:bed",
@@ -1594,67 +1594,67 @@
   },
   "9189": {
     "bedrock_name": "minecraft:white_wool",
-    "java_default_state": 2047
+    "texture": "wool_colored_white.png"
   },
   "1962": {
     "bedrock_name": "minecraft:orange_wool",
-    "java_default_state": 2048
+    "texture": "wool_colored_orange.png"
   },
   "2439": {
     "bedrock_name": "minecraft:magenta_wool",
-    "java_default_state": 2049
+    "texture": "wool_colored_magenta.png"
   },
   "12346": {
     "bedrock_name": "minecraft:light_blue_wool",
-    "java_default_state": 2050
+    "texture": "wool_colored_light_blue.png"
   },
   "557": {
     "bedrock_name": "minecraft:yellow_wool",
-    "java_default_state": 2051
+    "texture": "wool_colored_yellow.png"
   },
   "11129": {
     "bedrock_name": "minecraft:lime_wool",
-    "java_default_state": 2052
+    "texture": "wool_colored_lime.png"
   },
   "6174": {
     "bedrock_name": "minecraft:pink_wool",
-    "java_default_state": 2053
+    "texture": "wool_colored_pink.png"
   },
   "650": {
     "bedrock_name": "minecraft:gray_wool",
-    "java_default_state": 2054
+    "texture": "wool_colored_gray.png"
   },
   "13848": {
     "bedrock_name": "minecraft:light_gray_wool",
-    "java_default_state": 2055
+    "texture": "wool_colored_light_gray.png"
   },
   "9125": {
     "bedrock_name": "minecraft:cyan_wool",
-    "java_default_state": 2056
+    "texture": "wool_colored_cyan.png"
   },
   "14088": {
     "bedrock_name": "minecraft:purple_wool",
-    "java_default_state": 2057
+    "texture": "wool_colored_purple.png"
   },
   "9302": {
     "bedrock_name": "minecraft:blue_wool",
-    "java_default_state": 2058
+    "texture": "wool_colored_blue.png"
   },
   "704": {
     "bedrock_name": "minecraft:brown_wool",
-    "java_default_state": 2059
+    "texture": "wool_colored_brown.png"
   },
   "6121": {
     "bedrock_name": "minecraft:green_wool",
-    "java_default_state": 2060
+    "texture": "wool_colored_green.png"
   },
   "130": {
     "bedrock_name": "minecraft:red_wool",
-    "java_default_state": 2061
+    "texture": "wool_colored_red.png"
   },
   "1120": {
     "bedrock_name": "minecraft:black_wool",
-    "java_default_state": 2062
+    "texture": "wool_colored_black.png"
   },
   "9406": {
     "bedrock_name": "minecraft:moving_block",
@@ -1718,23 +1718,23 @@
   },
   "5907": {
     "bedrock_name": "minecraft:brown_mushroom",
-    "java_default_state": 2089
+    "texture": "mushroom_brown.png"
   },
   "7471": {
     "bedrock_name": "minecraft:red_mushroom",
-    "java_default_state": 2090
+    "texture": "mushroom_red.png"
   },
   "784": {
     "bedrock_name": "minecraft:gold_block",
-    "java_default_state": 2091
+    "texture": "gold_block.png"
   },
   "14089": {
     "bedrock_name": "minecraft:iron_block",
-    "java_default_state": 2092
+    "texture": "iron_block.png"
   },
   "8121": {
     "bedrock_name": "minecraft:brick_block",
-    "java_default_state": 2093
+    "texture": "brick.png"
   },
   "11912": {
     "bedrock_name": "minecraft:tnt",
@@ -2786,7 +2786,7 @@
   },
   "1192": {
     "bedrock_name": "minecraft:obsidian",
-    "java_default_state": 2354
+    "texture": "obsidian.png"
   },
   "2196": {
     "bedrock_name": "minecraft:torch",
@@ -3070,7 +3070,7 @@
   },
   "7207": {
     "bedrock_name": "minecraft:diamond_ore",
-    "java_default_state": 4274
+    "texture": "diamond_ore.png"
   },
   "13831": {
     "bedrock_name": "minecraft:deepslate_diamond_ore",
@@ -3078,7 +3078,7 @@
   },
   "727": {
     "bedrock_name": "minecraft:diamond_block",
-    "java_default_state": 4276
+    "texture": "diamond_block.png"
   },
   "10104": {
     "bedrock_name": "minecraft:crafting_table",
