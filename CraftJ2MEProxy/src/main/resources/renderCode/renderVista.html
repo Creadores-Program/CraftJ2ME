@@ -35,146 +35,25 @@
         }
         //carga de bloques
         const blockStandarGeometry = THREE.BoxGeometry(1, 1, 1);
-        let blocksTextur = {
-            "11892": null,//air
-            "1791": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone.png")),//stone
-            "86": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone_granite.png")),//granite
-            "1164": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone_granite_smooth.png")),//polished granite
-            "152": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone_diorite.png")),//diorite
-            "10045": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone_diorite_smooth.png")),//polished_diorite
-            "1789": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone_andesite.png")),//andesite
-            "13249": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("stone_andesite_smooth.png")),//polished_andesite
-            "10617": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("grass_carried.png")),//grass_block
-            "9578": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("dirt.png")),//dirt
-            "7966": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("dirt_podzol_top.png")),//podzol
-            "5997": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("cobblestone.png")),//cobblestone
-            "13245": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("planks_oak.png")),//oak_planks
-            "13607": loadTexture("data:image/png;base64,"+JavaComunique.getTexture("planks_spruce.png")),//spruce_planks
-        };
-        let blocksMaterial = {
-            "11892": null,//air
-            "1791": [//stone
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1791"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1791"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1791"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1791"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1791"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1791"] })
-            ],
-            "86": [//granite
-                new THREE.MeshBasicMaterial({ map: blocksTextur["86"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["86"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["86"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["86"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["86"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["86"] })
-            ],
-            "1164": [//polished granite
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1164"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1164"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1164"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1164"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1164"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1164"] })
-            ],
-            "152": [//diorite
-                new THREE.MeshBasicMaterial({ map: blocksTextur["152"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["152"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["152"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["152"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["152"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["152"] })
-            ],
-            "10045": [//polished_diorite
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10045"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10045"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10045"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10045"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10045"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10045"] })
-            ],
-            "1789": [//andesite
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1789"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1789"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1789"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1789"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1789"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["1789"] })
-            ],
-            "13249": [//polished_andesite
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13249"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13249"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13249"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13249"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13249"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13249"] })
-            ],
-            "10617": [//grass_block
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10617"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10617"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10617"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10617"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10617"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["10617"] })
-            ],
-            "9578": [//dirt
-                new THREE.MeshBasicMaterial({ map: blocksTextur["9578"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["9578"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["9578"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["9578"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["9578"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["9578"] })
-            ],
-            "7966": [//podzol
-                new THREE.MeshBasicMaterial({ map: blocksTextur["7966"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["7966"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["7966"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["7966"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["7966"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["7966"] })
-            ],
-            "5997": [//cobblestone
-                new THREE.MeshBasicMaterial({ map: blocksTextur["5997"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["5997"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["5997"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["5997"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["5997"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["5997"] })
-            ],
-            "13245": [//oak_planks
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13245"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13245"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13245"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13245"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13245"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13245"] })
-            ],
-            "13607": [//spruce_planks
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13607"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13607"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13607"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13607"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13607"] }),
-                new THREE.MeshBasicMaterial({ map: blocksTextur["13607"] })
-            ]
-        };
-        let blocks = {
-            "11892": null,//air
-            "1791": new THREE.Mesh(blockStandarGeometry, blocksMaterial["1791"]),//stone
-            "86": new THREE.Mesh(blockStandarGeometry, blocksMaterial["86"]),//granite
-            "1164": new THREE.Mesh(blockStandarGeometry, blocksMaterial["1164"]),//polished granite
-            "152": new THREE.Mesh(blockStandarGeometry, blocksMaterial["152"]),//diorite
-            "10045": new THREE.Mesh(blockStandarGeometry, blocksMaterial["10045"]),//polished_diorite
-            "1789": new THREE.Mesh(blockStandarGeometry, blocksMaterial["1789"]),//andesite
-            "13249": new THREE.Mesh(blockStandarGeometry, blocksMaterial["13249"]),//polished_andesite
-            "10617": new THREE.Mesh(blockStandarGeometry, blocksMaterial["10617"]),//grass_block
-            "9578": new THREE.Mesh(blockStandarGeometry, blocksMaterial["9578"]),//dirt
-            "9579": blocks["9578"],//dirt2
-            "7966": new THREE.Mesh(blockStandarGeometry, blocksMaterial["7966"]),//podzol
-            "5997": new THREE.Mesh(blockStandarGeometry, blocksMaterial["5997"]),//cobblestone
-            "13245": new THREE.Mesh(blockStandarGeometry, blocksMaterial["13245"]),//oak_planks
-            "13607": new THREE.Mesh(blockStandarGeometry, blocksMaterial["13607"]),//spruce_planks
-        };
+        let blocks = {};
+        let jsonBlocksRaw = JSON.parse(JavaComunique.getTexturesBlocks());
+        for(let keyBlock of Object.keys(jsonBlocksRaw)){
+            let jsonInfo = jsonBlocksRaw[keyBlock];
+            if(jsonInfo.texture == null){
+                continue;
+            }
+            let texture = loadTexture("data:image/png;base64,"+JavaComunique.getTexture(jsonInfo.texture));
+            let material = [
+                new THREE.MeshBasicMaterial({ map: texture }),
+                new THREE.MeshBasicMaterial({ map: texture }),
+                new THREE.MeshBasicMaterial({ map: texture }),
+                new THREE.MeshBasicMaterial({ map: texture }),
+                new THREE.MeshBasicMaterial({ map: texture }),
+                new THREE.MeshBasicMaterial({ map: texture })
+            ];
+            blocks[keyBlock] = new THREE.Mesh(blockStandarGeometry, material);
+        }
+        //render
         window.rendererMC = new THREE.WebGLRenderer();
         window.rendererMC.setPixelRatio(window.devicePixelRatio);
         window.rendererMC.setSize(window.innerWidth, window.innerHeight);
@@ -183,13 +62,12 @@
         window.rendererMC.shadowMap.type = THREE.PCFSoftShadowMap;
         document.getElementById("container").appendChild(window.rendererMC.domElement);
         window.sceneTR = new THREE.Scene();
+        window.cameraPlayer = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         window.sceneTR.fog = new THREE.Fog(0x80a0e0, 50, 75);
         window.setBlock = function setBlock(x, y, z, id){
             let blockOriginal = blocks[id];
-            let BlockCloned;
             if(blockOriginal === undefined){
-                //usar bloque update
-                return;
+                blockOriginal = blocks["676"];
             }
             if(blockOriginal == null){
                 return;
@@ -202,13 +80,57 @@
                     }
                 }
             }
-            BlockCloned = blockOriginal.clone();
+            let BlockCloned = blockOriginal.clone();
             BlockCloned.position.x = x;
             BlockCloned.position.y = y;
             BlockCloned.position.z = z;
             window.sceneTR.add(BlockCloned);
         };
+        const timesColorsSky = [
+            { timeMin: 0, timeMax: 5999, color: 0xee8b48 },
+            { timeMin: 6000, timeMax: 11999, color: 0x80a0e0 },
+            { timeMin: 12000, timeMax: 13500, color: 0xff8c69 },
+            { timeMin: 13501, timeMax: 24000, color: 0x0c0d2b }
+        ];
+        const timesColorSkyLL = [
+            { timeMin: 0, timeMax: 5999, color: 0xD3D3D3 },
+            { timeMin: 6000, timeMax: 11999, color: 0x9CA6B4 },
+            { timeMin: 12000, timeMax: 13500, color: 0xBF9A8F },
+            { timeMin: 13501, timeMax: 24000, color: 0x2C303A }
+        ];
+        let isLLuvia = false;
+        window.setTime = function setTime(time){
+            let colors;
+            if(isLLuvia){
+                colors = timesColorSkyLL;
+            }else{
+                colors = timesColorsSky;
+            }
+            for(let colorInfo of colors){
+                if(colorInfo.timeMin >= time && colorInfo.timeMax <= time){
+                    window.rendererMC.setClearColor(colorInfo.color);
+                    window.sceneTR.fog = new THREE.Fog(colorInfo.color, 50, 75);
+                    return;
+                }
+            }
+        };
+        window.setWeather = function setWeather(weatherID){
+            switch(weatherID){
+                case "START_RAINING":
+                case "START_THUNDERSTORM":
+                    isLLuvia = true;
+                    break;
+                default:
+                    isLLuvia = false;
+                    break;
+            }
+        };
+        function animateGame(){
+            requestAnimationFrame(animateGame);
+            window.rendererMC.render(window.sceneTR, window.cameraPlayer);
+        }
         JavaComunique.doneThree();
+        animateGame();
     </script>
 </body>
 </html>

@@ -127,6 +127,34 @@ public class RenderMCJ2ME{
             execJS("window.setBlock("+x+", "+y+", "+z+", '"+id+"');");
         }
     }
+    public void setTime(final int time){
+        if(fpsRender == null){
+            new Thread(){
+                public void run(){
+                    while(fpsRender == null){
+
+                    }
+                    setTime(time);
+                }
+            }.start();
+        }else{
+            execJS("window.setTime("+time+");");
+        }
+    }
+    public void setWeather(final String id){
+        if(fpsRender == null){
+            new Thread(){
+                public void run(){
+                    while(fpsRender == null){
+
+                    }
+                    setWeather(id);
+                }
+            }.start();
+        }else{
+            execJS("window.setWeather("+id+");");
+        }
+    }
     /*
     public void moveEntity(Vector3f pos, Vector2f rota, long entityId){}
     //public void setAnimation(){}
@@ -134,7 +162,6 @@ public class RenderMCJ2ME{
     //public void updateBlock(){}
     //public void spawnEntity(Data){}
     public void updatePlayer(){
-        //this.page.evaluate("code...");
     }
     */
     public class JSComunique{
