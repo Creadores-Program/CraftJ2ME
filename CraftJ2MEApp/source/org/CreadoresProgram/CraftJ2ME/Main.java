@@ -24,6 +24,7 @@ public class Main extends MIDlet implements CommandListener{
     private Command preServerAddServ;
     private Command preServerDelServ;
     private Command preServerQuit;
+    private Command preServerConfig;
     
     private VistaMCcanvas mcVista;
     private Command mcVistaChat;
@@ -76,10 +77,12 @@ public class Main extends MIDlet implements CommandListener{
         preServerAddServ = new Command("Añadir Servidor", Command.SCREEN, 2);
         preServerDelServ = new Command("Eliminar Servidor", Command.SCREEN, 3);
         preServerQuit = new Command("Salir", Command.EXIT, 4);
+        preServerConfig = new Command("Config", Command.SCREEN, 5);
         preservers.addCommand(preServerSelectServ);
         preservers.addCommand(preServerAddServ);
         preservers.addCommand(preServerDelServ);
         preservers.addCommand(preServerQuit);
+        preservers.addCommand(preServerConfig);
         preservers.setCommandListener(this);
         if(getItem("servers") != null){
             try{
@@ -168,7 +171,38 @@ public class Main extends MIDlet implements CommandListener{
             Display.getDisplay(this).setCurrent(present);
         }
     }
-    public void commandAction(Command c, Displayable d) {}
+    public void commandAction(Command c, Displayable d) {
+        if(c == preServerSelectServ){
+            //if(preservers){}
+        }else if(c == preServerAddServ){
+            Display.getDisplay(this).setCurrent(anidirServer);
+        }else if(c == preServerDelServ){
+            //if(preservers){}
+        }else if(c == configSelec){
+            //code...
+        }else if(c == configQuit){
+            if(mcVista != null){
+                Display.getDisplay(this).setCurrent(pause);
+            }else{
+                Display.getDisplay(this).setCurrent(preservers);
+            }
+        }else if(c == preServerQuit){
+            notifyDestroyed();
+        }else if(c == preServerConfig){
+            Display.getDisplay(this).setCurrent(config);
+        }else if(c == anidirServerCancel){
+            Display.getDisplay(this).setCurrent(preservers);
+        }else if(c == anidirServerAdd){
+            //code...
+        }else if(c == cambiarNombreOK){
+            //code...
+        }else if(c == cambiarNombreCancel){
+            Display.getDisplay(this).setCurrent(config);
+        }
+        if(serverMC == null){
+            return;
+        }
+    }
     public void pauseApp() {
         if(serverMC != null){
             Display.getDisplay(this).setCurrent(pause);
@@ -314,8 +348,6 @@ public class Main extends MIDlet implements CommandListener{
     }
     private void joinServer(String domain, int port){
         mcVista = new VistaMCcanvas();
-        mcVistaPause = new Command("pause", Command.BACK, 1);
-        mcVistaChat = new Command("chat", Command.OK, 2);
         mcVista.addCommand(mcVistaPause);
         mcVista.addCommand(mcVistaChat);
         mcVista.setCommandListener(this);
@@ -333,6 +365,22 @@ public class Main extends MIDlet implements CommandListener{
             er.printStackTrace();
         }
         Display.getDisplay(this).setCurrent(mcVista);
+        chatMC = new Form("Chat");
+        chatMCQuit = new Command("Salir", Command.BACK, 1);
+        chatMCSendMsg = new Command("Enviar Mensaje", Command.OK, 2);
+        chatMC.addCommand(chatMCQuit);
+        chatMC.addCommand(chatMCSendMsg);
+        chatMC.setCommandListener(this);
+        sendMsgChat = new TextBox("Enviar Chat Escribe tu mensaje:", "", 256, TextField.ANY);
+        sendMsgChatSend = new Command("Enviar", Command.OK, 2);
+        sendMsgChatCancel = new Command("Cancelar", Command.BACK, 1);
+        sendMsgChat.addCommand(sendMsgChatCancel);
+        sendMsgChat.addCommand(sendMsgChatSend);
+        sendMsgChat.setCommandListener(this);
+        playersList = new List("Jugadores", List.IMPLICIT);
+        playersListQuit = new Command("Salir", Command.BACK, 1);
+        playersList.addCommand(playersListQuit);
+        playersList.setCommandListener(this);
         serverMC = new ServerClientCraftJ2ME(domain, port);
         serverMC.start();
     }

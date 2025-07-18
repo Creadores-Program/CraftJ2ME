@@ -13,5 +13,6 @@ public class PingPacket implements CraftJ2MEPacketTranslator{
     @Override
     public void translate(JSONObject pk, Player player){
         Server.getInstance().getServer().sendDataPacket(player.getIdentifier(), new PongDatapack());
+        player.getPingLoop().setLastResponse(pk.getLongValue("ping"));
     }
 }

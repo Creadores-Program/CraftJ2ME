@@ -114,10 +114,14 @@ public class Player{
     @Getter
     @Setter
     private RenderMCJ2ME renderMCJ2ME;
+    @Getter
+    private PlayerPingLoop pingLoop;
     public Player(String identifier, JSONObject loginDatapack){
         this.packetTranslatorManager = new PacketTranslatorManager(this);
         this.identifier = identifier;
         this.loginDatapackCraftJ2ME = loginDatapack;
+        this.pingLoop = new PlayerPingLoop(this);
+        this.pingLoop.start();
         loginServer();
     }
     private void loginServer(){
@@ -143,9 +147,7 @@ public class Player{
                 .awaitUninterruptibly().channel();
                 Server.getInstance().getPlayers().put(this.identifier, this);
         }catch(Exception ex){
-            ExitDatapack datap = new ExitDatapack();
-            datap.reason = "Failed to connect: " + ex;
-            Server.getInstance().getServer().sendDataPacket(this.identifier, datap);
+            disconnect("Failed to connect: " + ex);
         }
     }
     public LoginPacket getLoginDatapack(){
@@ -255,12 +257,17 @@ public class Player{
     }
     public void disconnect(String reason) {
         playerInputExecutor.shutdown();
-        moveLoop.setRunning(false);
+        if(moveLoop != null){
+            moveLoop.setRunning(false);
+        }
+        if(pingLoop != null){
+            pingLoop.setRunning(false);
+        }
         try {
             this.bedrockClientSession.disconnect();
         } catch (Throwable ignored) {
         }
-        if (this.channel.isOpen()) {
+        if (this.channel != null && this.channel.isOpen()) {
             this.channel.disconnect();
             this.channel.parent().disconnect();
         }
@@ -377,6 +384,30 @@ public class Player{
                 pk.setOnGround(true);
                 if(player.getStartGamePacketCache().getAuthoritativeMovementMode() == AuthoritativeMovementMode.CLIENT){
                     player.getBedrockClientSession().sendPacket(pk);
+                }
+            }
+        }
+    }
+    public static class PlayerPingLoop extends Thread{
+        @Setter
+        private boolean running = true;
+        private Player player;
+        @Setter
+        private long lastResponse = System.currentTimeMillis();
+        private int timeoutMs = 5000;
+        public PlayerPingLoop(Player player){
+            this.player = player;
+        }
+        public void run(){
+            while(running){
+                try{
+                    long now = System.currentTimeMillis();
+                    if(now - lastResponse > timeoutMs){
+                        player.disconnect("Ping Excessed");
+                    }
+                    Thread.sleep(1000);
+                }catch(Exception ex){
+                    ex.printStackTrace();
                 }
             }
         }
