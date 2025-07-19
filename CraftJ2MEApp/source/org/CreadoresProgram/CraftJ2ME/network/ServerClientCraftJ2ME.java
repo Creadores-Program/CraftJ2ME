@@ -112,7 +112,7 @@ public class ServerClientCraftJ2ME extends Thread{
                     if(isRepeat){
                         continue;
                     }
-                    Main.instance.getPlayersList().append(playerName);
+                    Main.instance.getPlayersList().append(playerName, null);
                 }
                 for(int b = 0; b < Main.instance.getPlayersList().size(); b++){
                     String playerName = Main.instance.getPlayersList().getString(b);
