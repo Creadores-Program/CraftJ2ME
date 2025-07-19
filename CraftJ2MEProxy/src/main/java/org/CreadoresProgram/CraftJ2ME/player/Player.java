@@ -28,6 +28,7 @@ import org.cloudburstmc.protocol.bedrock.packet.RequestNetworkSettingsPacket;
 import org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket;
 import org.cloudburstmc.protocol.bedrock.packet.StartGamePacket;
 import org.cloudburstmc.protocol.bedrock.packet.PlayerAuthInputPacket;
+import org.cloudburstmc.protocol.bedrock.packet.PlayerListPacket;
 import org.cloudburstmc.protocol.bedrock.data.AuthoritativeMovementMode;
 import org.cloudburstmc.protocol.bedrock.data.InputInteractionModel;
 import org.cloudburstmc.protocol.bedrock.data.InputMode;
@@ -54,6 +55,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.Base64;
 import java.util.Random;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 public class Player{
@@ -116,6 +118,8 @@ public class Player{
     private RenderMCJ2ME renderMCJ2ME;
     @Getter
     private PlayerPingLoop pingLoop;
+    @Getter
+    private final List<PlayerListPacket.Entry> playersList = new ObjectArrayList<>();
     public Player(String identifier, JSONObject loginDatapack){
         this.packetTranslatorManager = new PacketTranslatorManager(this);
         this.identifier = identifier;

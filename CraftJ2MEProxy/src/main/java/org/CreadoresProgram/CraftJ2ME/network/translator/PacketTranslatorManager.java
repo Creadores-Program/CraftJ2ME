@@ -62,6 +62,7 @@ public class PacketTranslatorManager{
         craftj2meTranslators.put("chat", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.ChatPacket());
         craftj2meTranslators.put("move", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.MovePacket());
         craftj2meTranslators.put("settingsenter", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.SettingsEnterPacket());
+        craftj2meTranslators.put("requestplayerslist", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.RequestPlayersListPacket());
         //Bedrock
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ResourcePackStackPacket.class, new ResourcePackStackPacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ResourcePacksInfoPacket.class, new ResourcePacksInfoPacket());
@@ -73,5 +74,6 @@ public class PacketTranslatorManager{
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.LevelChunkPacket.class, new LevelChunkPacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.SetTimePacket.class, new SetTimePacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.StartGamePacket.class, new StartGamePacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.PlayerListPacket.class, new PlayerListPacket());
     }
 }

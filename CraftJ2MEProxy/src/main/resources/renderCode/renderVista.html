@@ -25,6 +25,9 @@
         import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three/examples/jsm/loaders/GLTFLoader.js/+esm";
         window.THREE = THREE;
         window.GLTFLoader = GLTFLoader;
+        while(JavaComunique == null){
+            //ignore
+        }
         const textureLoader = new THREE.TextureLoader();
         function loadTexture(path) {
             const texture = textureLoader.load(path);

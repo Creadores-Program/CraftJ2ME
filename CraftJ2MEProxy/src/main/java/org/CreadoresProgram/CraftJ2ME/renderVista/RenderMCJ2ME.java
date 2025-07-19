@@ -55,8 +55,8 @@ public class RenderMCJ2ME{
             this.webEngine = webView.getEngine();
             StackPane root = new StackPane(webView);
             new Scene(root, player.getLoginDatapackCraftJ2ME().getIntValue("wScreen"), player.getLoginDatapackCraftJ2ME().getIntValue("hScreen"));
-            this.setJsCallback("JavaComunique", new JSComunique());
             webEngine.load(Proxy.class.getResource("/renderCode/renderVista.html").toExternalForm());
+            this.setJsCallback("JavaComunique", new JSComunique());
             initFuture.complete(null);
         });
         initFuture.join();

@@ -199,8 +199,31 @@ public class Main extends MIDlet implements CommandListener{
         }else if(c == cambiarNombreCancel){
             Display.getDisplay(this).setCurrent(config);
         }
-        if(serverMC == null){
+        if(serverMC == null || mcVista == null){
             return;
+        }
+        if(c == mcVistaChat){
+            Display.getDisplay(this).setCurrent(chatMC);
+        }else if(c == mcVistaPause){
+            Display.getDisplay(this).setCurrent(pause);
+        }else if(c == pauseSelec){
+            //code...
+        }else if(c == pauseResume){
+            Display.getDisplay(this).setCurrent(mcVista);
+        }else if(c == playersListQuit){
+            Display.getDisplay(this).setCurrent(pause);
+        }else if(c == chatMCQuit){
+            Display.getDisplay(this).setCurrent(mcVista);
+        }else if(c == chatMCSendMsg){
+            Display.getDisplay(this).setCurrent(sendMsgChat);
+        }else if(c == sendMsgChatSend){
+            //code...
+        }else if(c == sendMsgChatCancel){
+            Display.getDisplay(this).setCurrent(chatMC);
+        }else if(c == inventarySelec){
+            //code
+        }else if(c == inventaryCancel){
+            Display.getDisplay(this).setCurrent(mcVista);
         }
     }
     public void pauseApp() {
