@@ -7,6 +7,7 @@ import org.CreadoresProgram.CraftJ2ME.network.packets.*;
 import org.CreadoresProgram.CraftJ2ME.ui.*;
 
 import org.json.me.JSONObject;
+import org.json.me.JSONArray;
 
 import java.util.Vector;
 public class ServerClientCraftJ2ME extends Thread{
@@ -86,7 +87,52 @@ public class ServerClientCraftJ2ME extends Thread{
             }else if(id == "settingsRForm"){
                 //añadir a lista de config
             }else if(id == "playersList"){
-                //lista de juegadores
+                JSONArray playersListd;
+                try{
+                    playersListd = datapack.getJSONArray("playersList");
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                    return;
+                }
+                for(int a = 0; a < playersListd.length(); a++){
+                    String playerName;
+                    try{
+                        playerName = playersListd.getString(a);
+                    }catch(Exception ex){
+                        ex.printStackTrace();
+                        continue;
+                    }
+                    boolean isRepeat = false;
+                    for(int i = 0; i < Main.instance.getPlayersList().size(); i++){
+                        if(Main.instance.getPlayersList().getString(i).equals(playerName)){
+                            isRepeat = true;
+                            break;
+                        }
+                    }
+                    if(isRepeat){
+                        continue;
+                    }
+                    Main.instance.getPlayersList().append(playerName);
+                }
+                for(int b = 0; b < Main.instance.getPlayersList().size(); b++){
+                    String playerName = Main.instance.getPlayersList().getString(b);
+                    boolean encontred = false;
+                    for(int c = 0; c < playersListd.length(); c++){
+                        String coinciden;
+                        try{
+                            coinciden = playersListd.getString(c);
+                        }catch(Exception ex){
+                            ex.printStackTrace();
+                            continue;
+                        }
+                        if(playerName.equals(coinciden)){
+                            encontred = true;
+                        }
+                    }
+                    if(!encontred){
+                        Main.instance.getPlayersList().delete(b);
+                    }
+                }
             }
         }
     }
