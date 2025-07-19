@@ -1,6 +1,6 @@
 package org.CreadoresProgram.CraftJ2ME.renderVista;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 import java.util.Base64;
 import java.util.stream.Stream;
 import java.net.URI;
@@ -12,7 +12,7 @@ import org.CreadoresProgram.CraftJ2ME.Proxy;
 import lombok.Getter;
 public class ItemsTexture{
     @Getter
-    private static final Map<String, String> textures = new ConcurrentHashMap<>();
+    private static final Map<String, String> textures = new HashMap<>();
     public static void init(){
         try{
             URI resourceUri = Proxy.class.getClassLoader().getResource("/textures/items").toURI();

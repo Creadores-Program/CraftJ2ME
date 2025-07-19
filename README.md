@@ -1,6 +1,8 @@
 # CraftJ2ME
 Join Minecraft Bedrock servers on your Classic J2ME Cell Phone (Peanuts)/Unete a servidores de minecraft bedrock en tu Celular Clasico J2ME(Cacahuatitos)
 
+# Como Funciona?
+Es un tipo Cloud Gaming que usa [ServerWebGamePost](https://github.com/Creadores-Program/ServerWebGamePost) de conexión entre el cliente J2ME y el Proxy y luego usando un traductor de ServerWebGamePost a Raknet basamos el traductor de packets en el traductor de [BarrelMC](https://github.com/BarrelMC/Barrel) y para la conexion a los servidores de Minecraft Bedrock usamos [Cloudburst Protocol](https://github.com/CloudburstMC/Protocol)
 # Creditos
 - [BarrelMC](https://github.com/BarrelMC/Barrel)
 - [Cloudburst Protocol](https://github.com/CloudburstMC/Protocol)

@@ -10,7 +10,10 @@ import org.cloudburstmc.nbt.NbtUtils;
 
 import org.yaml.snakeyaml.Yaml;
 
+import com.alibaba.fastjson2.JSONObject;
+
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.GZIPInputStream;
 import java.util.Objects;
@@ -27,6 +30,7 @@ import org.CreadoresProgram.CraftJ2ME.utils.TextFormat;
 import org.CreadoresProgram.CraftJ2ME.utils.Logger;
 import org.CreadoresProgram.CraftJ2ME.utils.FileManager;
 import org.CreadoresProgram.CraftJ2ME.utils.NbtBlockDefinitionRegistry;
+import org.CreadoresProgram.CraftJ2ME.renderVista.ItemsTexture;
 public class Server{
     @Getter
     private static Server instance = null;
@@ -48,6 +52,8 @@ public class Server{
     private ServerCraftJ2ME server;
     @Getter
     private Config config;
+    @Getter
+    private JSONObject itemsList;
     public Server(String dataPath){
         instance = this;
         this.logger = new Logger(TextFormat.GOLD.getAnsiCode()+"CraftJ2ME Proxy");
@@ -59,6 +65,7 @@ public class Server{
         }
         loadBlockDefinitions();
         loadDefaultSkin();
+        loadItemsTexture();
         startServer();
     }
     private boolean initConfig(){
@@ -101,6 +108,16 @@ public class Server{
             defaultSkinGeometry = FileManager.getFileContents(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("skin/skin_geometry.json")));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    private void loadItemsTexture(){
+        JSONObject jsonItemsTextures = FileManager.getJsonObjectFromResource("texturesItems.json");
+        itemsList = new JSONObject();
+        Set<String> keys = jsonItemsTextures.keySet();
+        for(String key : keys){
+            String path = jsonItemsTextures.getString(key);
+            String base = ItemsTexture.getTextures().get(path);
+            itemsList.put(key, base);
         }
     }
     private void startServer(){
