@@ -341,8 +341,8 @@ public class Main extends MIDlet implements CommandListener{
                         Display.getDisplay(Main.this).setCurrent(preservers);
                     }
                 };
-                Alert loadi = new Alert("Añadiendo Servidor...", "Porfavor, espere...", null, AlertType.INFO);
-                loadi.setTimeout(Alert.FOREVER);
+                Form loadi = new Form("Añadiendo Servidor...");
+                loadi.append("Añadiendo el servidor " + name + " (" + ip + ":" + finalPort + ")...");
                 Display.getDisplay(this).setCurrent(loadi);
                 loadCod.start();
             }catch(Exception exc){
@@ -637,7 +637,7 @@ public class Main extends MIDlet implements CommandListener{
         try{
             InputStream is = getClass().getResourceAsStream("/textures/loading.png");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[256];
+            byte[] buffer = new byte[12000];
             int bytesRead;
             while((bytesRead = is.read(buffer)) != -1){
                 baos.write(buffer, 0, bytesRead);
