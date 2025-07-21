@@ -185,7 +185,7 @@ public class ServerClientCraftJ2ME extends Thread{
                     datapacks.removeElementAt(i);
                 }
                 try{
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 }catch(Exception er){
                     er.printStackTrace();
                 }

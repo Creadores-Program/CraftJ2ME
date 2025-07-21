@@ -634,20 +634,12 @@ public class Main extends MIDlet implements CommandListener{
         mcVista.addCommand(mcVistaPause);
         mcVista.addCommand(mcVistaChat);
         mcVista.setCommandListener(this);
+        Display.getDisplay(this).setCurrent(mcVista);
         try{
-            InputStream is = getClass().getResourceAsStream("/textures/loading.png");
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[12000];
-            int bytesRead;
-            while((bytesRead = is.read(buffer)) != -1){
-                baos.write(buffer, 0, bytesRead);
-            }
-            is.close();
-            mcVista.updateVistaMC(Base64.encode(baos.toByteArray()));
+            mcVista.updateVistaMC(Image.createImage("/textures/loading.png"));
         }catch(Exception er){
             er.printStackTrace();
         }
-        Display.getDisplay(this).setCurrent(mcVista);
         chatMC = new Form("Chat");
         chatMCQuit = new Command("Salir", Command.BACK, 1);
         chatMCSendMsg = new Command("Enviar Mensaje", Command.OK, 2);

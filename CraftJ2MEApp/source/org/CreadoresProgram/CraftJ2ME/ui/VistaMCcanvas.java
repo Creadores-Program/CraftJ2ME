@@ -6,15 +6,23 @@ import StackOverflow.Base64;
 import org.CreadoresProgram.CraftJ2ME.Main;
 import org.CreadoresProgram.CraftJ2ME.network.packets.MoveDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.InventaryRequest;
-public class VistaMCcanvas extends Canvas{
-    private Image vistaMC;
+
+import java.util.Vector;
+public class VistaMCcanvas extends GameCanvas implements Runnable{
+    private Vector vistaMCFPS;
+    private boolean running = true;
+    private Thread gameThread;
     private int x = 0;
     private int y = 0;
     private int z = 0;
     private int yaw = 0;
     private int pitch = 0;
+    public VistaMCcanvas(){
+        super(true);
+        vistaMCFPS = new Vector();
+    }
     protected void keyPressed(int keyCode){
-        if(Main.instance.getServerMC() == null || Main.instance.getServerMC().queueLoop == null){
+        if(!running || Main.instance.getServerMC() == null || Main.instance.getServerMC().queueLoop == null){
             return;
         }
         int action = getGameAction(keyCode);
@@ -72,7 +80,7 @@ public class VistaMCcanvas extends Canvas{
         }
     }
     protected void keyReleased(int keyCode){
-        if(Main.instance.getServerMC() == null || Main.instance.getServerMC().queueLoop == null){
+        if(!running || Main.instance.getServerMC() == null || Main.instance.getServerMC().queueLoop == null){
             return;
         }
         int action = getGameAction(keyCode);
@@ -113,20 +121,72 @@ public class VistaMCcanvas extends Canvas{
                 }
         }
     }
-    protected void paint(Graphics g){
-        if(vistaMC == null) return;
-        int w = getWidth();
-        int h = getHeight();
-        int imgW = vistaMC.getWidth();
-        int imgH = vistaMC.getHeight();
-        int x = (w - imgW) / 2;
-        int y = (h - imgH) / 2;
-        g.drawImage(vistaMC, x, y, Graphics.TOP | Graphics.LEFT);
+    public void start(){
+       gameThread = new Thread(this);
+       gameThread.start();
+    }
+    public void run(){
+        Graphics g = getGraphics();
+        while(running){
+            if(vistaMCFPS.size() == 0){
+                try{
+                    Thread.sleep(50);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                continue;
+            }
+            g.setColor(0x000000);
+            g.fillRect(0, 0, getWidth(), getHeight());
+            int w = getWidth();
+            int h = getHeight();
+            int imgW = ((Image) vistaMCFPS.elementAt(0)).getWidth();
+            int imgH = ((Image) vistaMCFPS.elementAt(0)).getHeight();
+            int x = 0;
+            int y = 0;
+            if(w != imgW){
+                x = (w - imgW) / 2;
+            }
+            if(h != imgH){
+                y = (h - imgH) / 2;
+            }
+            g.drawImage((Image) vistaMCFPS.elementAt(0), x, y, Graphics.TOP | Graphics.LEFT);
+            flushGraphics();
+            vistaMCFPS.removeElementAt(0);
+            try{
+                Thread.sleep(50);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    public void stop(){
+        running = false;
+        if(gameThread != null){
+            try{
+                gameThread.join();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        gameThread = null;
     }
     public void updateVistaMC(String baseImg){
         byte[] imageBytes = Base64.decode(baseImg);
-        this.vistaMC = Image.createImage(imageBytes, 0, imageBytes.length);
-        repaint();
+        this.vistaMCFPS.addElement(Image.createImage(imageBytes, 0, imageBytes.length));
+    }
+    public void updateVistaMC(Image img){
+        this.vistaMCFPS.addElement(img);
+    }
+    public void updateVistaMC(Vector imgs){
+        this.vistaMCFPS.addAll(imgs);
+    }
+    public void updateVistaMC(byte[] imgBytes){
+        try{
+            this.vistaMCFPS.addElement(Image.createImage(imgBytes, 0, imgBytes.length));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     private void updateMoveData(){
         MoveDatapack datapack = new MoveDatapack(Main.instance.getIdPlayer());
