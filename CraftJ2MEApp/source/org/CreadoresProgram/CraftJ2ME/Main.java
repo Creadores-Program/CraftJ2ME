@@ -476,7 +476,7 @@ public class Main extends MIDlet implements CommandListener{
                                 inventaryCancel = null;
                                 mcVista = null;
                                 mcVistaChat = null;
-                                mcVistaPause = null
+                                mcVistaPause = null;
                             }
                         }.start();
                         break;
