@@ -233,7 +233,7 @@ public class Main extends MIDlet implements CommandListener{
                 }
             }
             servers = nuevoArr;
-            setItem("servers", servers);
+            setItem("servers", servers.toString());
         }else if(c == configQuit){
             if(mcVista != null){
                 Display.getDisplay(this).setCurrent(pause);
@@ -332,7 +332,7 @@ public class Main extends MIDlet implements CommandListener{
                 serc.put("port", finalPort);
                 serc.put("name", name);
                 servers.put(serc);
-                setItem("servers", servers);
+                setItem("servers", servers.toString());
                 final int ffinalPort = finalPort;
                 Thread loadCod = new Thread(){
                     public void run(){
