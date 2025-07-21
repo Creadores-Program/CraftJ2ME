@@ -18,6 +18,7 @@ import org.CreadoresProgram.CraftJ2ME.ui.*;
 import org.CreadoresProgram.CraftJ2ME.network.packets.ExitDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.ChatDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.RequestPlayersListDatapack;
+import org.CreadoresProgram.CraftJ2ME.network.packets.UpdateSkinDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.ServerClientCraftJ2ME;
 public class Main extends MIDlet implements CommandListener{
     private static final int LIMIT_MAX_BYTES_IMG = 100 * 1024;
@@ -48,6 +49,10 @@ public class Main extends MIDlet implements CommandListener{
     private Command cambiarNombreOK;
     private Command cambiarNombreCancel;
 
+    private TextBox cambiarSkin;
+    private Command cambiarSkinOK;
+    private Command cambiarSkinCancel;
+
     private List playersList;
     private Command playersListQuit;
 
@@ -72,7 +77,7 @@ public class Main extends MIDlet implements CommandListener{
         instance = this;
         preservers = new List("Servidores", List.IMPLICIT);
         preServerAddServ = new Command("Añadir Servidor", Command.SCREEN, 1);
-        preServerDelServ = new Command("Eliminar Servidor", Command.SCREEN, 2);
+        preServerDelServ = new Command("Eliminar Servidor", Command.ITEM, 2);
         preServerQuit = new Command("Salir", Command.EXIT, 3);
         preServerConfig = new Command("Config", Command.SCREEN, 4);
         preservers.addCommand(preServerAddServ);
@@ -115,6 +120,7 @@ public class Main extends MIDlet implements CommandListener{
         pause.setCommandListener(this);
         pause.append("Config", null);
         pause.append("Lista de Jugadores", null);
+        pause.append("Salir del Servidor", null);
         config = new List("Config", List.IMPLICIT);
         configQuit = new Command("Atras", Command.BACK, 1);
         config.addCommand(configQuit);
@@ -131,22 +137,28 @@ public class Main extends MIDlet implements CommandListener{
         config.append("Cambiar Nombre", null);
         anidirServer = new Form("Añadir Server");
         anidirServerAdd = new Command("Añadir", Command.OK, 1);
-        anidirServerCancel = new Command("Cancelar", Command.BACK, 2);
+        anidirServerCancel = new Command("Cancelar", Command.CANCEL, 2);
         anidirServer.addCommand(anidirServerAdd);
         anidirServer.addCommand(anidirServerCancel);
         anidirServer.setCommandListener(this);
-        anidirServerIP = new TextField("IP", "", 35, TextField.ANY);
+        anidirServerIP = new TextField("IP", "", 35, TextField.URL);
         anidirServerName = new TextField("Nombre", "", 16, TextField.ANY);
         anidirServerPort = new TextField("Puerto", "", 5, TextField.NUMERIC);
         anidirServer.append(anidirServerName);
         anidirServer.append(anidirServerIP);
         anidirServer.append(anidirServerPort);
         cambiarNombre = new TextBox("Escribe tu Nombre", namePlayer, 16, TextField.ANY);
-        cambiarNombreCancel = new Command("Cancelar", Command.BACK, 1);
+        cambiarNombreCancel = new Command("Cancelar", Command.CANCEL, 1);
         cambiarNombreOK = new Command("OK", Command.OK, 2);
         cambiarNombre.addCommand(cambiarNombreOK);
         cambiarNombre.addCommand(cambiarNombreCancel);
         cambiarNombre.setCommandListener(this);
+        cambiarSkin = new TextBox("Escribe la URL de tu skin", getSkin(), 10000, TextField.URL);
+        cambiarSkinCancel = new Command("Cancelar", Command.CANCEL, 1);
+        cambiarSkinOK = new Command("OK", Command.OK, 2);
+        cambiarSkin.addCommand(cambiarSkinOK);
+        cambiarSkin.addCommand(cambiarSkinCancel);
+        cambiarSkin.setCommandListener(this);
         Display.getDisplay(this).setCurrent(preservers);
         if(getItem("present") == null){
             Image img;
@@ -170,14 +182,58 @@ public class Main extends MIDlet implements CommandListener{
     public void commandAction(Command c, Displayable d) {
         if(c == List.SELECT_COMMAND){
             if(d == preservers){
-                //code...
+                int indexSelec = preservers.getSelectedIndex();
+                try{
+                    JSONObject server = servers.getJSONObject(indexSelec);
+                    joinServer(server.getString("ip"), server.getInt("port"));
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             }else if(d == config){
-                //code...
+                int indexSelec = config.getSelectedIndex();
+                switch(indexSelec){
+                    case 0://skin
+                        Display.getDisplay(this).setCurrent(cambiarSkin);
+                        break;
+                    case 1://cambiar Nombre
+                        Display.getDisplay(this).setCurrent(cambiarNombre);
+                        break;
+                }
             }
         }else if(c == preServerAddServ){
             Display.getDisplay(this).setCurrent(anidirServer);
         }else if(c == preServerDelServ){
-            //if(preservers){}
+            JSONArray nuevoArr;
+            try{
+                nuevoArr = new JSONArray();
+            }catch(Exception err){
+                err.printStackTrace();
+                return;
+            }
+            int indexList = preservers.getSelectedIndex();
+            if(indexList == -1){
+                Alert noElem = new Alert("Error", "No seleccionaste ningun servidor!", null, AlertType.ERROR);
+                noElem.setTimeout(Alert.FOREVER);
+                noElem.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                });
+                return;
+            }
+            for(int i = 0; i < servers.length(); i++){
+                if(i == indexList){
+                    continue;
+                }
+                try{
+                    nuevoArr.put(servers.get(i));
+                }catch(Exception er){
+                    er.printStackTrace();
+                    continue;
+                }
+            }
+            servers = nuevoArr;
+            setItem("servers", servers);
         }else if(c == configQuit){
             if(mcVista != null){
                 Display.getDisplay(this).setCurrent(pause);
@@ -191,7 +247,115 @@ public class Main extends MIDlet implements CommandListener{
         }else if(c == anidirServerCancel){
             Display.getDisplay(this).setCurrent(preservers);
         }else if(c == anidirServerAdd){
-            //code...
+            final String ip = anidirServerIP.getString();
+            String port = anidirServerPort.getString();
+            final String name = anidirServerName.getString();
+            if(ip.length() < 3){
+                Alert adNoLeng = new Alert("Añadir Servidor", "Error!\nIP invalida!", null, AlertType.ERROR);
+                adNoLeng.setTimeout(Alert.FOREVER);
+                adNoLeng.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                });
+                Display.getDisplay(this).setCurrent(adNoLeng);
+                return;
+            }
+            if(name.length() < 3){
+                Alert adNoLeng = new Alert("Añadir Servidor", "Error!\nel Nombre es muy corto!", null, AlertType.ERROR);
+                adNoLeng.setTimeout(Alert.FOREVER);
+                adNoLeng.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                });
+                Display.getDisplay(this).setCurrent(adNoLeng);
+                return;
+            }
+            if(port.length() < 1){
+                Alert adNoLeng = new Alert("Añadir Servidor", "Error!\nPuerto Invalido!", null, AlertType.ERROR);
+                adNoLeng.setTimeout(Alert.FOREVER);
+                adNoLeng.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                });
+                Display.getDisplay(this).setCurrent(adNoLeng);
+                return;
+            }
+            int finalPort = 0;
+            try{
+                finalPort = Integer.parseInt(port);
+                if(finalPort < 1){
+                    throw new RuntimeException("Puerto invalido");
+                }
+            }catch(Exception ex){
+                Alert adNoLeng = new Alert("Añadir Servidor", "Error!\nPuerto Invalido!", null, AlertType.ERROR);
+                adNoLeng.setTimeout(Alert.FOREVER);
+                adNoLeng.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                });
+                Display.getDisplay(this).setCurrent(adNoLeng);
+                return;
+            }
+            for(int i = 0; i < servers.length(); i++){
+                try{
+                    JSONObject server = servers.getJSONObject(i);
+                    if(server.getString("ip").equals(ip) && server.getInt("port") == finalPort){
+                        Alert adNoLeng = new Alert("Añadir Servidor", "Error!\nEl servidor ya existe!", null, AlertType.ERROR);
+                        adNoLeng.setTimeout(Alert.FOREVER);
+                        adNoLeng.setCommandListener(new CommandListener(){
+                            public void commandAction(Command c, Displayable d){
+                                Display.getDisplay(Main.this).setCurrent(preservers);
+                            }
+                        });
+                        Display.getDisplay(this).setCurrent(adNoLeng);
+                        return;
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                    Alert adNoLeng = new Alert("Añadir Servidor", "Error!\nHubo un error al verificar el servidor!", null, AlertType.ERROR);
+                    adNoLeng.setTimeout(Alert.FOREVER);
+                    adNoLeng.setCommandListener(new CommandListener(){
+                        public void commandAction(Command c, Displayable d){
+                            Display.getDisplay(Main.this).setCurrent(preservers);
+                        }
+                    });
+                    Display.getDisplay(this).setCurrent(adNoLeng);
+                }
+            }
+            try{
+                JSONObject serc = new JSONObject();
+                serc.put("ip", ip);
+                serc.put("port", finalPort);
+                serc.put("name", name);
+                servers.put(serc);
+                setItem("servers", servers);
+                final int ffinalPort = finalPort;
+                Thread loadCod = new Thread(){
+                    public void run(){
+                        Image imgServ = getImageServer(ip, ffinalPort);
+                        preservers.append(name, imgServ);
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                };
+                Alert loadi = new Alert("Añadiendo Servidor...", "Porfavor, espere...", null, AlertType.INFO);
+                loadi.setTimeout(Alert.FOREVER);
+                Display.getDisplay(this).setCurrent(loadi);
+                loadCod.start();
+            }catch(Exception exc){
+                Alert errordeck = new Alert("Añadir Servidor", "Error!\nHubo un error desconocido al añadir el servidor!", null, AlertType.ERROR);
+                errordeck.setTimeout(Alert.FOREVER);
+                errordeck.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(preservers);
+                    }
+                });
+                Display.getDisplay(this).setCurrent(errordeck);
+                exc.printStackTrace();
+            }
         }else if(c == cambiarNombreOK){
             String name = cambiarNombre.getString();
             if(name == null || name.length() < 3){
@@ -207,7 +371,7 @@ public class Main extends MIDlet implements CommandListener{
             }
             setItem("name", name);
             namePlayer = name;
-            Alert susses = new Alert("Cambiar Nombre", "Tu nombre fue cambiado con exito!", null, AlertType.INFO);
+            Alert susses = new Alert("Cambiar Nombre", "Tu nombre fue cambiado con exito!", null, AlertType.CONFIRMATION);
             susses.setTimeout(Alert.FOREVER);
             susses.setCommandListener(new CommandListener(){
                 public void commandAction(Command c, Displayable d){
@@ -216,6 +380,35 @@ public class Main extends MIDlet implements CommandListener{
             });
             Display.getDisplay(this).setCurrent(susses);
         }else if(c == cambiarNombreCancel){
+            Display.getDisplay(this).setCurrent(config);
+        }else if(c == cambiarSkinOK){
+            String urlSkin = cambiarSkin.getString();
+            if(urlSkin.length() < 10){
+                Alert adNoLeng = new Alert("Cambiar Skin", "Error!\nUrl Invalida!", null, AlertType.ERROR);
+                adNoLeng.setTimeout(Alert.FOREVER);
+                adNoLeng.setCommandListener(new CommandListener(){
+                    public void commandAction(Command c, Displayable d){
+                        Display.getDisplay(Main.this).setCurrent(config);
+                    }
+                });
+                Display.getDisplay(this).setCurrent(adNoLeng);
+                return;
+            }
+            setItem("skinPlayer", urlSkin);
+            Alert succes = new Alert("Cambiar Skin", "Tu skin fue cambiado con exito!", null, AlertType.CONFIRMATION);
+            succes.setTimeout(Alert.FOREVER);
+            succes.setCommandListener(new CommandListener(){
+                public void commandAction(Command c, Displayable d){
+                    Display.getDisplay(Main.this).setCurrent(config);
+                }
+            });
+            if(serverMC != null){
+                UpdateSkinDatapack pkSk = new UpdateSkinDatapack(idPlayer);
+                pkSk.skin = urlSkin;
+                serverMC.queueLoop.datapacks.addElement(pkSk);
+            }
+            Display.getDisplay(this).setCurrent(succes);
+        }else if(c == cambiarSkinCancel){
             Display.getDisplay(this).setCurrent(config);
         }
         if(serverMC == null || mcVista == null){
@@ -249,6 +442,7 @@ public class Main extends MIDlet implements CommandListener{
             ChatDatapack datapack = new ChatDatapack(idPlayer);
             datapack.message = msg;
             serverMC.queueLoop.datapacks.addElement(datapack);
+            sendMsgChat.setString("");
             Display.getDisplay(this).setCurrent(chatMC);
         }else if(c == sendMsgChatCancel){
             Display.getDisplay(this).setCurrent(chatMC);
@@ -262,6 +456,29 @@ public class Main extends MIDlet implements CommandListener{
                     case 1://playersList
                         serverMC.queueLoop.datapacks.addElement(new RequestPlayersListDatapack(idPlayer));
                         Display.getDisplay(this).setCurrent(playersList);
+                        break;
+                    case 2://salir
+                        Display.getDisplay(this).setCurrent(preservers);
+                        new Thread(){
+                            public void run(){
+                                serverMC.sendDataPacket(new ExitDatapack(idPlayer));
+                                serverMC.stopServ();
+                                serverMC = null;
+                                chatMC = null;
+                                chatMCQuit = null;
+                                chatMCSendMsg = null;
+                                playersList = null;
+                                playersListQuit = null;
+                                sendMsgChat = null;
+                                sendMsgChatSend = null;
+                                sendMsgChatCancel = null;
+                                inventary = null;
+                                inventaryCancel = null;
+                                mcVista = null;
+                                mcVistaChat = null;
+                                mcVistaPause = null
+                            }
+                        }.start();
                         break;
                 }
             }else if(d == inventary){
@@ -300,6 +517,14 @@ public class Main extends MIDlet implements CommandListener{
     }
     public void noRespondingServer(){
         serverMC.stopServ();
+        Alert disconec = new Alert("Desconectado", "Desconexión del Servidor!", null, AlertType.INFO);
+        disconec.setTimeout(Alert.FOREVER);
+        disconec.setCommandListener(new CommandListener(){
+            public void commandAction(Command c, Displayable d){
+                Display.getDisplay(Main.this).setCurrent(preservers);
+            }
+        });
+        Display.getDisplay(this).setCurrent(disconec);
         serverMC = null;
         chatMC = null;
         chatMCQuit = null;
@@ -314,7 +539,9 @@ public class Main extends MIDlet implements CommandListener{
         mcVista = null;
         mcVistaChat = null;
         mcVistaPause = null;
-        Alert disconec = new Alert("Desconectado", "Desconexión del Servidor!", null, AlertType.INFO);
+    }
+    public void exitServer(String reason){
+        Alert disconec = new Alert("Desconectado", reason, null, AlertType.INFO);
         disconec.setTimeout(Alert.FOREVER);
         disconec.setCommandListener(new CommandListener(){
             public void commandAction(Command c, Displayable d){
@@ -322,8 +549,6 @@ public class Main extends MIDlet implements CommandListener{
             }
         });
         Display.getDisplay(this).setCurrent(disconec);
-    }
-    public void exitServer(String reason){
         serverMC.stopServ();
         serverMC = null;
         chatMC = null;
@@ -339,14 +564,6 @@ public class Main extends MIDlet implements CommandListener{
         mcVista = null;
         mcVistaChat = null;
         mcVistaPause = null;
-        Alert disconec = new Alert("Desconectado", reason, null, AlertType.INFO);
-        disconec.setTimeout(Alert.FOREVER);
-        disconec.setCommandListener(new CommandListener(){
-            public void commandAction(Command c, Displayable d){
-                Display.getDisplay(Main.this).setCurrent(preservers);
-            }
-        });
-        Display.getDisplay(this).setCurrent(disconec);
     }
     public void sendChat(StringMCItem str){
         chatMC.append(str);
@@ -439,7 +656,7 @@ public class Main extends MIDlet implements CommandListener{
         chatMC.setCommandListener(this);
         sendMsgChat = new TextBox("Enviar Chat Escribe tu mensaje:", "", 256, TextField.ANY);
         sendMsgChatSend = new Command("Enviar", Command.OK, 2);
-        sendMsgChatCancel = new Command("Cancelar", Command.BACK, 1);
+        sendMsgChatCancel = new Command("Cancelar", Command.CANCEL, 1);
         sendMsgChat.addCommand(sendMsgChatCancel);
         sendMsgChat.addCommand(sendMsgChatSend);
         sendMsgChat.setCommandListener(this);
