@@ -179,9 +179,6 @@ public class VistaMCcanvas extends GameCanvas implements Runnable{
     public void updateVistaMC(Image img){
         this.vistaMCFPS.addElement(img);
     }
-    public void updateVistaMC(Vector imgs){
-        this.vistaMCFPS.addAll(imgs);
-    }
     public void updateVistaMC(byte[] imgBytes){
         try{
             this.vistaMCFPS.addElement(Image.createImage(imgBytes, 0, imgBytes.length));
