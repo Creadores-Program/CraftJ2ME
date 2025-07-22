@@ -1,5 +1,6 @@
 package org.CreadoresProgram.CraftJ2ME.ui;
 import javax.microedition.lcdui.*;
+import javax.microedition.lcdui.game.GameCanvas;
 
 import StackOverflow.Base64;
 

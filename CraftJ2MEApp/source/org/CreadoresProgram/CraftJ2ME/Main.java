@@ -635,6 +635,7 @@ public class Main extends MIDlet implements CommandListener{
         mcVista.addCommand(mcVistaChat);
         mcVista.setCommandListener(this);
         Display.getDisplay(this).setCurrent(mcVista);
+        mcVista.start();
         try{
             mcVista.updateVistaMC(Image.createImage("/textures/loading.png"));
         }catch(Exception er){
