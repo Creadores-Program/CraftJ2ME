@@ -86,6 +86,13 @@ public class ServerClientCraftJ2ME extends Thread{
                 //establecer vista de form
             }else if(id == "settingsRForm"){
                 //añadir a lista de config
+            }else if(id == "responsestats"){
+                //actualizar stats
+                try{
+                    Main.instance.setStats(datapack.getInt("vida"), datapack.getInt("hambre"), datapack.getInt("armadura"));
+                }catch(Exception er){
+                    er.printStackTrace();
+                }
             }else if(id == "playersList"){
                 JSONArray playersListd;
                 try{

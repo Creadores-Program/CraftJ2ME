@@ -7,6 +7,9 @@ import StackOverflow.Base64;
 import org.CreadoresProgram.CraftJ2ME.Main;
 import org.CreadoresProgram.CraftJ2ME.network.packets.MoveDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.InventaryRequest;
+import org.CreadoresProgram.CraftJ2ME.network.packets.RequestStatsDatapack;
+import org.CreadoresProgram.CraftJ2ME.network.packets.InteractDatapack;
+import org.CreadoresProgram.CraftJ2ME.network.packets.BreakBlockDatapack;
 
 import java.util.Vector;
 public class VistaMCcanvas extends GameCanvas implements Runnable{
@@ -77,6 +80,17 @@ public class VistaMCcanvas extends GameCanvas implements Runnable{
                         datapack.pageRequest = 0;
                         Main.instance.getServerMC().queueLoop.datapacks.addElement(datapack);
                         break;
+                    case KEY_NUM7://romper datapack
+                        BreakBlockDatapack breakBlockDatapack = new BreakBlockDatapack(Main.instance.getIdPlayer());
+                        breakBlockDatapack.idInt = 1;
+                        Main.instance.getServerMC().queueLoop.datapacks.addElement(breakBlockDatapack);
+                        break;
+                    case KEY_POUND://stats datapack
+                        Main.instance.getServerMC().queueLoop.datapacks.addElement(new RequestStatsDatapack(Main.instance.getIdPlayer()));
+                        break;
+                    case KEY_STAR://interactuar datapack
+                        Main.instance.getServerMC().queueLoop.datapacks.addElement(new InteractDatapack(Main.instance.getIdPlayer()));
+                        break;
                 }
         }
     }
@@ -118,6 +132,14 @@ public class VistaMCcanvas extends GameCanvas implements Runnable{
                         break;
                     case KEY_NUM0:
                         Main.instance.setInventary();
+                        break;
+                    case KEY_NUM7:
+                        BreakBlockDatapack breakBlockDatapack = new BreakBlockDatapack(Main.instance.getIdPlayer());
+                        breakBlockDatapack.idInt = 0;
+                        Main.instance.getServerMC().queueLoop.datapacks.addElement(breakBlockDatapack);
+                        break;
+                    case KEY_POUND:
+                        Main.instance.showStats();
                         break;
                 }
         }

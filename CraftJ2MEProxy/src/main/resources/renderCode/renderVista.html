@@ -15,11 +15,42 @@
             top: 0%;
             bottom: 0%;
             right: 0%;
+            z-index: 1;
+        }
+        #pointer{
+            position: fixed;
+            left: 50vw;
+            top: 50vh;
+            width: 2vw;
+            height: 2vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+        #pointer::before, #pointer::after{
+            content: "";
+            position: absolute;
+            background: white;
+        }
+        #pointer::before{
+            left: 50%;
+            top: 0;
+            width: 0.2vw;
+            height: 2vw;
+            transform: translateX(-50%);
+        }
+        #pointer::after{
+            top: 50%;
+            left: 0;
+            width: 2vw;
+            height: 0.2vh;
+            transform: translateY(-50%);
         }
     </style>
 </head>
 <body>
     <div id="container"></div>
+    <div id="pointer"></div>
     <script type="module">
         import * as THREE from 'https://esm.run/three';
         import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three/examples/jsm/loaders/GLTFLoader.js/+esm";

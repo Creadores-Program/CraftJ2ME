@@ -18,6 +18,7 @@ import org.CreadoresProgram.CraftJ2ME.ui.*;
 import org.CreadoresProgram.CraftJ2ME.network.packets.ExitDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.ChatDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.RequestPlayersListDatapack;
+import org.CreadoresProgram.CraftJ2ME.network.packets.RespawnDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.packets.UpdateSkinDatapack;
 import org.CreadoresProgram.CraftJ2ME.network.ServerClientCraftJ2ME;
 public class Main extends MIDlet implements CommandListener{
@@ -66,6 +67,13 @@ public class Main extends MIDlet implements CommandListener{
 
     private List inventary;
     private Command inventaryCancel;
+
+    private Form deahtScreen;
+    private Command deahtScreenQuit;
+    private Command deahtScreenRespawn;
+
+    private Form statsScreen;
+    private Command statsScreenQuit;
 
     private String idPlayer;
     private String namePlayer;
@@ -446,6 +454,37 @@ public class Main extends MIDlet implements CommandListener{
             Display.getDisplay(this).setCurrent(chatMC);
         }else if(c == sendMsgChatCancel){
             Display.getDisplay(this).setCurrent(chatMC);
+        }else if(c == deahtScreenQuit){
+            Display.getDisplay(this).setCurrent(preservers);
+            new Thread(){
+                public void run(){
+                    serverMC.sendDataPacket(new ExitDatapack(idPlayer));
+                    serverMC.stopServ();
+                    serverMC = null;
+                    chatMC = null;
+                    chatMCQuit = null;
+                    chatMCSendMsg = null;
+                    playersList = null;
+                    playersListQuit = null;
+                    sendMsgChat = null;
+                    sendMsgChatSend = null;
+                    sendMsgChatCancel = null;
+                    inventary = null;
+                    inventaryCancel = null;
+                    mcVista = null;
+                    mcVistaChat = null;
+                    mcVistaPause = null;
+                    deahtScreen = null;
+                    deahtScreenQuit = null;
+                    deahtScreenRespawn = null;
+                    statsScreenQuit = null;
+                    statsScreen = null;
+                }
+            }.start();
+        }else if(c == deahtScreenRespawn){
+            serverMC.queueLoop.datapacks.addElement(new RespawnDatapack(idPlayer));
+        }else if(c == statsScreenQuit){
+            Display.getDisplay(this).setCurrent(mcVista);
         }else if(c == List.SELECT_COMMAND){
             if(d == pause){
                 int indexList = pause.getSelectedIndex();
@@ -477,6 +516,11 @@ public class Main extends MIDlet implements CommandListener{
                                 mcVista = null;
                                 mcVistaChat = null;
                                 mcVistaPause = null;
+                                deahtScreen = null;
+                                deahtScreenQuit = null;
+                                deahtScreenRespawn = null;
+                                statsScreenQuit = null;
+                                statsScreen = null;
                             }
                         }.start();
                         break;
@@ -539,6 +583,11 @@ public class Main extends MIDlet implements CommandListener{
         mcVista = null;
         mcVistaChat = null;
         mcVistaPause = null;
+        deahtScreen = null;
+        deahtScreenQuit = null;
+        deahtScreenRespawn = null;
+        statsScreenQuit = null;
+        statsScreen = null;
     }
     public void exitServer(String reason){
         Alert disconec = new Alert("Desconectado", reason, null, AlertType.INFO);
@@ -564,6 +613,11 @@ public class Main extends MIDlet implements CommandListener{
         mcVista = null;
         mcVistaChat = null;
         mcVistaPause = null;
+        deahtScreen = null;
+        deahtScreenQuit = null;
+        deahtScreenRespawn = null;
+        statsScreenQuit = null;
+        statsScreen = null;
     }
     public void sendChat(StringMCItem str){
         chatMC.append(str);
@@ -577,6 +631,16 @@ public class Main extends MIDlet implements CommandListener{
         inventary.append("Mostrar más", null);
         inventary.addCommand(inventaryCancel);
         Display.getDisplay(this).setCurrent(inventary);
+    }
+    public void setStats(int vida, int hambre, int armadur){
+        statsScreen.deleteAll();
+        statsScreen.append("Vida: " + vida + "\n");
+        statsScreen.append("Hambre: " + hambre + "\n");
+        statsScreen.append("Armadura: " + armadur + "\n");
+        statsScreen.addCommand(statsScreenQuit);
+    }
+    public void showStats(){
+        Display.getDisplay(this).setCurrent(statsScreen);
     }
     public void destroyApp(boolean unconditional) {
         if(serverMC != null){
@@ -596,6 +660,11 @@ public class Main extends MIDlet implements CommandListener{
             mcVista = null;
             mcVistaChat = null;
             mcVistaPause = null;
+            deahtScreen = null;
+            deahtScreenQuit = null;
+            deahtScreenRespawn = null;
+            statsScreenQuit = null;
+            statsScreen = null;
         }
     }
     private void setItem(String idkey, String value){
@@ -657,6 +726,16 @@ public class Main extends MIDlet implements CommandListener{
         playersListQuit = new Command("Salir", Command.BACK, 1);
         playersList.addCommand(playersListQuit);
         playersList.setCommandListener(this);
+        deahtScreen = new Form("Has muerto!");
+        deahtScreenQuit = new Command("Salir", Command.BACK, 1);
+        deahtScreenRespawn = new Command("Respawn", Command.OK, 2);
+        deahtScreen.addCommand(deahtScreenQuit);
+        deahtScreen.addCommand(deahtScreenRespawn);
+        deahtScreen.setCommandListener(this);
+        statsScreenQuit = new Command("Atras", Command.BACK, 1);
+        statsScreen = new Form("Estado del Jugador");
+        statsScreen.addCommand(statsScreenQuit);
+        statsScreen.setCommandListener(this);
         serverMC = new ServerClientCraftJ2ME(domain, port);
         serverMC.start();
     }
