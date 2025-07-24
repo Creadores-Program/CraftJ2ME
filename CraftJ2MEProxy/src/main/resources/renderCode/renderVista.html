@@ -133,7 +133,11 @@
             { timeMin: 13501, timeMax: 24000, color: 0x2C303A }
         ];
         let isLLuvia = false;
+        let dimention = 0;
         window.setTime = function setTime(time){
+            if(dimention != 0){
+                return;
+            }
             let colors;
             if(isLLuvia){
                 colors = timesColorSkyLL;
@@ -156,6 +160,26 @@
                     break;
                 default:
                     isLLuvia = false;
+                    break;
+            }
+        };
+        window.setDimention = function setDimention(id){
+            dimention = id;
+            switch(id){
+                case 0: // Overworld
+                    window.rendererMC.setClearColor(0x80a0e0);
+                    window.sceneTR.fog = new THREE.Fog(0x80a0e0);
+                    break;
+                case 1: // Nether
+                    window.rendererMC.setClearColor(0xB22222);
+                    window.sceneTR.fog = new THREE.Fog(0xB22222, 50, 75);
+                    break;
+                case 2: // End
+                    window.rendererMC.setClearColor(0x0b0033);
+                    window.sceneTR.fog = new THREE.Fog(0x1a0033, 50, 75);
+                    break;
+                default:
+                    console.warn("Dimention not supported: " + id);
                     break;
             }
         };

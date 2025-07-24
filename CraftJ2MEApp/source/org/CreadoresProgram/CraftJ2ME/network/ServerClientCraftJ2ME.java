@@ -87,9 +87,8 @@ public class ServerClientCraftJ2ME extends Thread{
             }else if(id == "settingsRForm"){
                 //añadir a lista de config
             }else if(id == "responsestats"){
-                //actualizar stats
                 try{
-                    Main.instance.setStats(datapack.getInt("vida"), datapack.getInt("hambre"), datapack.getInt("armadura"));
+                    Main.instance.setStats(datapack.getInt("vida"), datapack.getInt("hambre"), datapack.getInt("armadura"), datapack.getInt("xp"));
                 }catch(Exception er){
                     er.printStackTrace();
                 }

@@ -118,8 +118,15 @@ public class Player{
     private RenderMCJ2ME renderMCJ2ME;
     @Getter
     private PlayerPingLoop pingLoop;
+    @Setter
+    @Getter
+    private int dimention = 0;
     @Getter
     private final List<PlayerListPacket.Entry> playersList = new ObjectArrayList<>();
+    public int vida = 20;
+    public int hambre = 20;
+    public int armadura = 0;
+    public int xp = 0;
     public Player(String identifier, JSONObject loginDatapack){
         this.packetTranslatorManager = new PacketTranslatorManager(this);
         this.identifier = identifier;

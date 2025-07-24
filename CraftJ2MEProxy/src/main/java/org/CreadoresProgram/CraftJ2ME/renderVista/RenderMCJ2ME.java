@@ -59,6 +59,7 @@ public class RenderMCJ2ME{
             this.setJsCallback("JavaComunique", new JSComunique());
             initFuture.complete(null);
         });
+        setDimention(player.getDimention());
         initFuture.join();
     }
     public void offRender(){
@@ -153,6 +154,20 @@ public class RenderMCJ2ME{
             }.start();
         }else{
             execJS("window.setWeather("+id+");");
+        }
+    }
+    public void setDimention(final int id){
+        if(fpsRender == null){
+            new Thread(){
+                public void run(){
+                    while(fpsRender == null){
+
+                    }
+                    setDimention(id);
+                }
+            }.start();
+        }else{
+            execJS("window.setDimention("+id+");");
         }
     }
     /*

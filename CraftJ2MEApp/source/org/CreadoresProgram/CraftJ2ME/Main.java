@@ -632,11 +632,12 @@ public class Main extends MIDlet implements CommandListener{
         inventary.addCommand(inventaryCancel);
         Display.getDisplay(this).setCurrent(inventary);
     }
-    public void setStats(int vida, int hambre, int armadur){
+    public void setStats(int vida, int hambre, int armadur, int xp){
         statsScreen.deleteAll();
         statsScreen.append("Vida: " + vida + "\n");
         statsScreen.append("Hambre: " + hambre + "\n");
         statsScreen.append("Armadura: " + armadur + "\n");
+        statsScreen.append("XP: " + xp + "\n");
         statsScreen.addCommand(statsScreenQuit);
     }
     public void showStats(){
