@@ -28,8 +28,8 @@ public class StartGamePacket implements BedrockPacketTranslator {
         if (!packet.isBlockNetworkIdsHashed()) {
             player.getBedrockClientSession().getPeer().getCodecHelper().setBlockDefinitions(Server.getInstance().getBlockDefinitions());
         }
-        if(player.getRenderJ2ME() != null){
-            player.getRenderJ2ME().setDimention(packet.getDimensionId());
+        if(player.getRenderMCJ2ME() != null){
+            player.getRenderMCJ2ME().setDimention(packet.getDimensionId());
         }
         player.setDimention(packet.getDimensionId());
         RequestChunkRadiusPacket subpk = new RequestChunkRadiusPacket();
