@@ -393,6 +393,9 @@ public class Player{
                 pk.setTeleportationCause(MovePlayerPacket.TeleportationCause.UNKNOWN);
                 pk.setEntityType(0);
                 pk.setOnGround(true);
+                if(player.getRenderMCJ2ME() != null){
+                    player.getRenderMCJ2ME().setPlayerPos(player.getVector3f(), player.getRotation());
+                }
                 if(player.getStartGamePacketCache().getAuthoritativeMovementMode() == AuthoritativeMovementMode.CLIENT){
                     player.getBedrockClientSession().sendPacket(pk);
                 }

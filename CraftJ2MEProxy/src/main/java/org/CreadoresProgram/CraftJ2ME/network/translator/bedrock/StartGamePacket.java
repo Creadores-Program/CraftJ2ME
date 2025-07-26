@@ -30,6 +30,7 @@ public class StartGamePacket implements BedrockPacketTranslator {
         }
         if(player.getRenderMCJ2ME() != null){
             player.getRenderMCJ2ME().setDimention(packet.getDimensionId());
+            player.getRenderMCJ2ME().setPlayerPos(packet.getPlayerPosition(), packet.getRotation());
         }
         player.setDimention(packet.getDimensionId());
         RequestChunkRadiusPacket subpk = new RequestChunkRadiusPacket();

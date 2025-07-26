@@ -183,6 +183,12 @@
                     break;
             }
         };
+        window.setPlayerPos = function setPlayerPos(x, y, z){
+            window.cameraPlayer.position.set(x, y + 1.6, z);
+        };
+        window.setPlayerRot = function setPlayerRot(pitch, yaw){
+            window.cameraPlayer.rotation.set(THREE.MathUtils.degToRad(pitch), THREE.MathUtils.degToRad(yaw), 0);
+        };
         function animateGame(){
             requestAnimationFrame(animateGame);
             window.rendererMC.render(window.sceneTR, window.cameraPlayer);

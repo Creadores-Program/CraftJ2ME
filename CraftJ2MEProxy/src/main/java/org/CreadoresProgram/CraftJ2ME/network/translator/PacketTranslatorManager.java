@@ -66,6 +66,8 @@ public class PacketTranslatorManager{
         craftj2meTranslators.put("requeststats", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.RequestStatsPacket());
         craftj2meTranslators.put("updateskin", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.UpdateSkinPacket());
         craftj2meTranslators.put("respawn", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.RespawnPacket());
+        craftj2meTranslators.put("interact", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.InteractPacket());
+        craftj2meTranslators.put("breakblock", new org.CreadoresProgram.CraftJ2ME.network.translator.craftj2me.BreakBlockPacket());
         //Bedrock
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ResourcePackStackPacket.class, new ResourcePackStackPacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.ResourcePacksInfoPacket.class, new ResourcePacksInfoPacket());

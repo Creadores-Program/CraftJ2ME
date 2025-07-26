@@ -170,6 +170,21 @@ public class RenderMCJ2ME{
             execJS("window.setDimention("+id+");");
         }
     }
+    public void setPlayerPos(final Vector3f pos, final Vector2f rota){
+        if(fpsRender == null){
+            new Thread(){
+                public void run(){
+                    while(fpsRender == null){
+
+                    }
+                    setPlayerPos(pos, rota);
+                }
+            }.start();
+        }else{
+            execJS("window.setPlayerPos("+pos.getX()+", "+pos.getY()+", "+pos.getZ()+");");
+            execJS("window.setPlayerRot("+rota.getX()+", "+rota.getY()+");");
+        }
+    }
     /*
     public void moveEntity(Vector3f pos, Vector2f rota, long entityId){}
     //public void setAnimation(){}
