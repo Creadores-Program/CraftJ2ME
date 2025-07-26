@@ -14,7 +14,7 @@ public class MoveEntityAbsolutePacket implements BedrockPacketTranslator {
         org.cloudburstmc.protocol.bedrock.packet.MoveEntityAbsolutePacket packet = (org.cloudburstmc.protocol.bedrock.packet.MoveEntityAbsolutePacket) pk;
         Vector3f position = packet.getPosition();
         Vector2f rotation = packet.getRotation().toVector2();
-        if(packet.getRuntimeEntityId() == player.getEntityId()) {
+        if(packet.getRuntimeEntityId() == player.getRuntimeEntityId()) {
             player.setVector3f(position);
             player.setRotation(rotation);
             player.getRenderMCJ2ME().setPlayerPos(player.getVector3f(), player.getRotation());

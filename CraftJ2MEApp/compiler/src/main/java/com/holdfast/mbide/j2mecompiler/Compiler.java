@@ -76,7 +76,9 @@ public class Compiler {
         zip.putNextEntry(new ZipEntry("META-INF/MANIFEST.MF"));
         zip.write(("Manifest-Version: 1.0\n"
                 + "Ant-Version: Apache Ant 1.9.4\n"
-                + "Created-By: 1.8.0_25-b18 (Oracle Corporation)\n"
+                + "Created-By: "+System.getProperty("java.version")+" ("+System.getProperty("java.vendor")+")\n"
+                + "Built-By: "+ System.getProperty("user.name")+"\n"
+                + "Build-Date: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n"
                 + "MIDlet-1: CraftJ2ME, /icon.png, org.CreadoresProgram.CraftJ2ME.Main\n"
                 + "MIDlet-Vendor: Creadores Program\n"
                 + "MIDlet-Version: 1.0.0-beta\n"
