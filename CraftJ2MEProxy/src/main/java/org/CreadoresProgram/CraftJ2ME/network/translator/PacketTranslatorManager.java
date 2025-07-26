@@ -81,5 +81,8 @@ public class PacketTranslatorManager{
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.StartGamePacket.class, new StartGamePacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.PlayerListPacket.class, new PlayerListPacket());
         bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.RespawnPacket.class, new RespawnPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.MovePlayerPacket.class, new MovePlayerPacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.MoveEntityAbsolutePacket.class, new MoveEntityAbsolutePacket());
+        bedrockTranslators.put(org.cloudburstmc.protocol.bedrock.packet.UpdateBlockPacket.class, new UpdateBlockPacket());
     }
 }

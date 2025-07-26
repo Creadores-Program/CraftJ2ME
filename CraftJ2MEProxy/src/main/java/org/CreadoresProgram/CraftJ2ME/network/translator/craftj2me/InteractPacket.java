@@ -30,7 +30,7 @@ public class InteractPacket implements CraftJ2MEPacketTranslator{
             org.cloudburstmc.protocol.bedrock.packet.InteractPacket subpk = new org.cloudburstmc.protocol.bedrock.packet.InteractPacket();
             subpk.setRuntimeEntityId(player.getRuntimeEntityId());
             subpk.setAction(org.cloudburstmc.protocol.bedrock.packet.InteractPacket.Action.INTERACT);
-            subpk.setMausePosition(Vector3f.from(x, y, z));
+            subpk.setMousePosition(Vector3f.from(x, y, z));
             player.getBedrockClientSession().sendPacket(subpk);
         }else{
             //proximamente
