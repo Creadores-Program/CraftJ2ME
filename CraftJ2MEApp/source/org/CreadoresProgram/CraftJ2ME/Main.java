@@ -456,6 +456,8 @@ public class Main extends MIDlet implements CommandListener{
             Display.getDisplay(this).setCurrent(chatMC);
         }else if(c == deahtScreenQuit){
             Display.getDisplay(this).setCurrent(preservers);
+            mcVista.stop();
+            mcVista = null;
             new Thread(){
                 public void run(){
                     serverMC.sendDataPacket(new ExitDatapack(idPlayer));
@@ -498,6 +500,8 @@ public class Main extends MIDlet implements CommandListener{
                         break;
                     case 2://salir
                         Display.getDisplay(this).setCurrent(preservers);
+                        mcVista.stop();
+                        mcVista = null;
                         new Thread(){
                             public void run(){
                                 serverMC.sendDataPacket(new ExitDatapack(idPlayer));
@@ -569,6 +573,8 @@ public class Main extends MIDlet implements CommandListener{
             }
         });
         Display.getDisplay(this).setCurrent(disconec);
+        mcVista.stop();
+        serverMC.stopServ();
         serverMC = null;
         chatMC = null;
         chatMCQuit = null;
@@ -599,6 +605,7 @@ public class Main extends MIDlet implements CommandListener{
         });
         Display.getDisplay(this).setCurrent(disconec);
         serverMC.stopServ();
+        mcVista.stop();
         serverMC = null;
         chatMC = null;
         chatMCQuit = null;
@@ -647,6 +654,9 @@ public class Main extends MIDlet implements CommandListener{
         if(serverMC != null){
             serverMC.sendDataPacket(new ExitDatapack(idPlayer));
             serverMC.stopServ();
+            if(mcVista != null){
+                mcVista.stop();
+            }
             serverMC = null;
             chatMC = null;
             chatMCQuit = null;

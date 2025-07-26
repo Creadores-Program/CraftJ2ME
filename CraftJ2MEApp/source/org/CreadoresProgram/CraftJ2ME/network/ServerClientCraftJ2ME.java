@@ -33,6 +33,10 @@ public class ServerClientCraftJ2ME extends Thread{
         pingLoop.start();
     }
     public void stopServ(){
+        if(queueLoop != null){
+            queueLoop.running = false;
+        }
+        pingLoop.running = false;
         pingLoop = null;
         queueLoop = null;
         serverRaw = null;
