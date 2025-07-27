@@ -31,6 +31,7 @@ import org.CreadoresProgram.CraftJ2ME.utils.Logger;
 import org.CreadoresProgram.CraftJ2ME.utils.FileManager;
 import org.CreadoresProgram.CraftJ2ME.utils.NbtBlockDefinitionRegistry;
 import org.CreadoresProgram.CraftJ2ME.renderVista.ItemsTexture;
+import org.CreadoresProgram.CraftJ2ME.renderVista.BlocksTexture;
 public class Server{
     @Getter
     private static Server instance = null;
@@ -54,6 +55,8 @@ public class Server{
     private Config config;
     @Getter
     private JSONObject itemsList;
+    @Getter
+    private JSONObject itemBlocksList;
     public Server(String dataPath){
         instance = this;
         this.logger = new Logger(TextFormat.GOLD.getAnsiCode()+"CraftJ2ME Proxy");
@@ -66,6 +69,7 @@ public class Server{
         loadBlockDefinitions();
         loadDefaultSkin();
         loadItemsTexture();
+        loadItemsBlockTexture();
         startServer();
     }
     private boolean initConfig(){
@@ -117,7 +121,23 @@ public class Server{
         for(String key : keys){
             String path = jsonItemsTextures.getString(key);
             String base = ItemsTexture.getTextures().get(path);
+            if (base == null) {
+                continue; 
+            }
             itemsList.put(key, base);
+        }
+    }
+    private void loadItemsBlockTexture(){
+        JSONObject jsonItemsTextures = FileManager.getJsonObjectFromResource("texturesItemBlocks.json");
+        itemBlocksList = new JSONObject();
+        Set<String> keys = jsonItemsTextures.keySet();
+        for(String key : keys){
+            String path = jsonItemsTextures.getString(key);
+            String base = BlocksTexture.getTextures().get(path);
+            if (base == null) {
+                continue; 
+            }
+            itemBlocksList.put(key, base);
         }
     }
     private void startServer(){
