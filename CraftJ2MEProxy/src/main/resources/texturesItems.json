@@ -1,6 +1,13 @@
 {
     "0": null,
     "26": "bed_red.png",
+    "55": "redstone_dust.png",
+    "63": "sign_oak.png",
+    "64": "door_wood.png",
+    "68": "sign_oak.png",
+    "69": "lever.png",
+    "71": "door_iron.png",
+    "83": "reeds.png",
     "256": "iron_shovel.png",
     "257": "iron_pickaxe.png",
     "258": "iron_axe.png",

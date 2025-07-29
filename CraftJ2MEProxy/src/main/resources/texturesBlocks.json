@@ -61149,7 +61149,7 @@
     },
     "676": {
         "bedrock_name": "minecraft:info_update",
-        "java_default_state": "??"
+        "texture": "update-dirt-block.png"
     },
     "736": {
         "bedrock_name": "minecraft:hard_gray_stained_glass",
@@ -61201,7 +61201,7 @@
     },
     "5906": {
         "bedrock_name": "minecraft:glowingobsidian",
-        "java_default_state": "??"
+        "texture": "glowing-obsidian-116.png"
     },
     "6694": {
         "bedrock_name": "minecraft:hard_white_stained_glass",
@@ -62305,7 +62305,7 @@
     },
     "13119": {
         "bedrock_name": "minecraft:netherreactor",
-        "java_default_state": "??"
+        "texture": "nether-reactor-core.png"
     },
     "13138": {
         "bedrock_name": "minecraft:chemical_heat",
@@ -62773,7 +62773,7 @@
     },
     "13612": {
         "bedrock_name": "minecraft:info_update2",
-        "java_default_state": "??"
+        "texture": "update-dirt-block.png"
     },
     "13801": {
         "bedrock_name": "minecraft:hard_light_gray_stained_glass",
