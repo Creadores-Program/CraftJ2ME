@@ -61165,7 +61165,7 @@
     },
     "2433": {
         "bedrock_name": "minecraft:invisible_bedrock",
-        "java_default_state": "??"
+        "texture": "invisible-bedrock.png"
     },
     "2616": {
         "bedrock_name": "minecraft:hard_brown_stained_glass_pane",
