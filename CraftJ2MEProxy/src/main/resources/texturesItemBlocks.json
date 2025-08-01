@@ -313,5 +313,7 @@
     "823": "torchflower.png",
     "828": "suspicious_gravel_1.png",
     "829": "pitcher_crop_side.png",
-    "835": "calibrated_sculk_sensor_side.png"
+    "835": "calibrated_sculk_sensor_side.png",
+    "999": "tuff.png",
+    "1000": "tuff.png"
 }
